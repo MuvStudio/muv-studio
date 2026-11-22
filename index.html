@@ -326,32 +326,25 @@
       z-index: 6;
     }
 
+    /* Proporção 3:4 preserva o visual vertical e evita corte exagerado nas laterais das capas */
     .card-media {
       position: relative;
-      aspect-ratio: 2 / 3;
+      aspect-ratio: 3 / 4;
       background: #080b09;
       overflow: hidden;
     }
 
-    /* Encaixe inteligente da capa do YouTube sem faixas pretas e com foco central */
     .card-media img.card-thumb {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center;
-      transform: scale(1.02);
+      object-position: center center;
+      transform: scale(1.01);
       transition: transform 0.4s ease, filter 0.3s ease;
-    }
-    /* Card vertical (2:3) + vídeo horizontal (16:9): amplia para preencher o quadro sem sobra */
-    .card[data-ratio="16:9"] .card-media img.card-thumb {
-      transform: scale(1.44);
-    }
-    /* Card vertical (2:3) + vídeo vertical (9:16): recorta faixas laterais da miniatura do YouTube */
-    .card[data-ratio="9:16"] .card-media img.card-thumb {
-      transform: scale(1.72);
     }
 
     .card:hover .card-media img.card-thumb {
+      transform: scale(1.04);
       filter: brightness(1.06);
     }
 
