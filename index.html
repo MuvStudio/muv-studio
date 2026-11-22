@@ -7,9 +7,9 @@
   <meta name="description" content="Catálogo oficial da MUV STUDIO e Anormale Company. Aftermovies, eventos corporativos, corridas, imobiliário, fashion films, comerciais, motion/VFX, documentários e reels.">
   <meta name="theme-color" content="#060807">
 
-  <link rel="icon" type="image/png" href="assets/img/Muv_Studio_Logo-10.png?v=2">
-  <link rel="shortcut icon" type="image/png" href="assets/img/Muv_Studio_Logo-10.png?v=2">
-  <link rel="apple-touch-icon" href="assets/img/Muv_Studio_Logo-10.png?v=2">
+  <link rel="icon" type="image/png" sizes="any" href="assets/img/Muv_Studio_Logo-10.png?v=3">
+  <link rel="shortcut icon" type="image/png" href="assets/img/Muv_Studio_Logo-10.png?v=3">
+  <link rel="apple-touch-icon" href="assets/img/Muv_Studio_Logo-10.png?v=3">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -234,7 +234,7 @@
     }
     .carousel-dot.active { width: 32px; background: var(--lime); }
 
-    /* BARRA DE FILTROS + SELETOR DE MODO */
+    /* BARRA DE FILTROS */
     .filter-bar {
       position: sticky; top: 68px; z-index: 40;
       background: rgba(6, 8, 7, 0.84);
@@ -266,18 +266,6 @@
       border-color: var(--border-lime);
       color: var(--lime); font-weight: 600;
     }
-
-    .card-mode-switch {
-      display: inline-flex; align-items: center;
-      background: var(--glass); border: 1px solid var(--border);
-      border-radius: 999px; padding: 3px; flex-shrink: 0;
-    }
-    .card-mode-switch button {
-      padding: 5px 12px; border-radius: 999px;
-      font-size: 0.72rem; font-weight: 600; color: var(--muted);
-      transition: all 0.2s ease;
-    }
-    .card-mode-switch button.active { background: var(--lime); color: #050806; }
 
     /* TRILHOS (5 CARDS VISÍVEIS) E GRADE EXPANDIDA AO FILTRAR CATEGORIA */
     .catalog { padding: 38px 0 64px; position: relative; z-index: 5; }
@@ -313,10 +301,6 @@
     }
     .rail-track::-webkit-scrollbar { display: none; }
 
-    body.mode-wide .rail-track {
-      grid-auto-columns: calc((100% - 54px) / 4);
-    }
-
     /* Grade expandida quando uma categoria específica é clicada */
     .rail-track.is-grid {
       grid-auto-flow: row;
@@ -325,9 +309,6 @@
       gap: 18px;
       overflow-x: visible;
       padding: 8px 0 14px;
-    }
-    body.mode-wide .rail-track.is-grid {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 
     .card {
@@ -350,10 +331,6 @@
       aspect-ratio: 2 / 3;
       background: #080b09;
       overflow: hidden;
-      transition: aspect-ratio 0.25s ease;
-    }
-    body.mode-wide .card-media {
-      aspect-ratio: 16 / 9;
     }
 
     /* Encaixe inteligente da capa do YouTube sem faixas pretas e com foco central */
@@ -366,16 +343,12 @@
       transition: transform 0.4s ease, filter 0.3s ease;
     }
     /* Card vertical (2:3) + vídeo horizontal (16:9): amplia para preencher o quadro sem sobra */
-    body:not(.mode-wide) .card[data-ratio="16:9"] .card-media img.card-thumb {
+    .card[data-ratio="16:9"] .card-media img.card-thumb {
       transform: scale(1.44);
     }
     /* Card vertical (2:3) + vídeo vertical (9:16): recorta faixas laterais da miniatura do YouTube */
-    body:not(.mode-wide) .card[data-ratio="9:16"] .card-media img.card-thumb {
+    .card[data-ratio="9:16"] .card-media img.card-thumb {
       transform: scale(1.72);
-    }
-    /* Card horizontal (16:9) + vídeo vertical (9:16): preenche sem bordas */
-    body.mode-wide .card[data-ratio="9:16"] .card-media img.card-thumb {
-      transform: scale(1.36);
     }
 
     .card:hover .card-media img.card-thumb {
@@ -597,7 +570,6 @@
     @media (max-width: 1100px) {
       .rail-track { grid-auto-columns: calc((100% - 48px) / 4); }
       .rail-track.is-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-      body.mode-wide .rail-track.is-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .footer-top { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 820px) {
@@ -606,8 +578,7 @@
       .side-peek { display: none; }
       .hero-card { padding: 28px 24px; min-height: 410px; }
       .rail-track { grid-auto-columns: 46%; }
-      body.mode-wide .rail-track { grid-auto-columns: 64%; }
-      .rail-track.is-grid, body.mode-wide .rail-track.is-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .rail-track.is-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .bts-grid, .hub-grid { grid-template-columns: 1fr; }
       .nav-links { display: none; }
       .carousel-arrow { display: none; }
@@ -615,8 +586,7 @@
     @media (max-width: 560px) {
       .wrap { width: calc(100% - 28px); }
       .rail-track { grid-auto-columns: 66%; }
-      .rail-track.is-grid, body.mode-wide .rail-track.is-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-      .card-mode-switch { display: none; }
+      .rail-track.is-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
       .footer-top { grid-template-columns: 1fr; }
       .credits-grid { grid-template-columns: 1fr; }
     }
@@ -761,11 +731,6 @@
           <button class="pill" type="button" data-filter="doc-reality">Doc & Reality</button>
           <button class="pill" type="button" data-filter="podcast">Podcast</button>
           <button class="pill" type="button" data-filter="anormale">Anormale Company</button>
-        </div>
-
-        <div class="card-mode-switch" title="Alternar entre capa vertical (DVD) e horizontal">
-          <button type="button" class="active" id="mode-poster">Capa (2:3)</button>
-          <button type="button" id="mode-wide">Wide (16:9)</button>
         </div>
       </div>
     </div>
@@ -1006,7 +971,7 @@
   </div>
 
   <script>
-    const ytThumb = (id) => `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+    const ytThumb = (id) => `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
 
     // Ordenados por relevância de portfólio em cada trilho (destaques à frente)
     const rails = [
@@ -1320,7 +1285,7 @@
               <article class="card" data-ratio="${item.ratio}" onclick="openProject('${rail.id}', ${idx})">
                 <div class="card-media">
                   <div class="card-muv"><img src="assets/img/Muv_Studio_Logo-10.png" alt="MUV"></div>
-                  <img class="card-thumb" src="${ytThumb(item.yt)}" alt="${item.title}" loading="lazy" onerror="this.onerror=null;this.src='${item.thumb}';">
+                  <img class="card-thumb" src="${ytThumb(item.yt)}" alt="${item.title}" loading="lazy" onload="if(this.naturalWidth===120){this.src='https://img.youtube.com/vi/${item.yt}/hqdefault.jpg';}" onerror="this.onerror=null;this.src='${item.thumb}';">
                   <div class="card-overlay">
                     <span class="card-kicker">${item.kicker}</span>
                     <h3 class="card-title">${item.title}</h3>
@@ -1356,19 +1321,6 @@
     document.querySelectorAll('.pill').forEach(pill => {
       if (!pill.dataset.filter) return;
       pill.addEventListener('click', () => setFilter(pill.dataset.filter));
-    });
-
-    const btnPoster = document.getElementById('mode-poster');
-    const btnWide = document.getElementById('mode-wide');
-    btnPoster.addEventListener('click', () => {
-      document.body.classList.remove('mode-wide');
-      btnPoster.classList.add('active');
-      btnWide.classList.remove('active');
-    });
-    btnWide.addEventListener('click', () => {
-      document.body.classList.add('mode-wide');
-      btnWide.classList.add('active');
-      btnPoster.classList.remove('active');
     });
 
     const modal = document.getElementById('modal');
