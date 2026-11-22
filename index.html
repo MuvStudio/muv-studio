@@ -1,0 +1,1425 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MUV STUDIO — Catálogo Audiovisual, Pós-Produção & Direção</title>
+  <meta name="description" content="Catálogo oficial da MUV STUDIO e Anormale Company. Aftermovies, eventos corporativos, corridas, imobiliário, fashion films, comerciais, motion/VFX, documentários e reels.">
+  <meta name="theme-color" content="#060807">
+
+  <link rel="icon" type="image/png" href="assets/img/Muv_Studio_Logo-10.png?v=2">
+  <link rel="shortcut icon" type="image/png" href="assets/img/Muv_Studio_Logo-10.png?v=2">
+  <link rel="apple-touch-icon" href="assets/img/Muv_Studio_Logo-10.png?v=2">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #060807;
+      --surface: #0b0f0d;
+      --surface-2: #101613;
+      --glass: rgba(255, 255, 255, 0.035);
+      --glass-hover: rgba(255, 255, 255, 0.07);
+      --border: rgba(255, 255, 255, 0.085);
+      --border-strong: rgba(255, 255, 255, 0.16);
+      --border-lime: rgba(163, 255, 18, 0.48);
+      --text: #f4f6f5;
+      --muted: #98a29d;
+      --lime: #a3ff12;
+      --grad: linear-gradient(135deg, #2ee59d 0%, #b8ff2c 100%);
+      --radius: 15px;
+      --max: 1380px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    body {
+      line-height: 1.55;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      background:
+        radial-gradient(circle at 15% 0%, rgba(163, 255, 18, 0.045), transparent 42%),
+        var(--bg);
+    }
+
+    img, video { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+
+    .wrap { width: min(var(--max), calc(100% - 56px)); margin: 0 auto; }
+
+    /* HEADER */
+    .header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      background: rgba(6, 8, 7, 0.78);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.065);
+    }
+    .header-in {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px; gap: 20px;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; }
+    .brand-icon {
+      width: 28px; height: 28px; border-radius: 7px; object-fit: contain; padding: 3px;
+      background: rgba(5, 8, 6, 0.9);
+      border: 1px solid rgba(163, 255, 18, 0.28);
+    }
+    .brand img.brand-logo { height: 21px; width: auto; }
+    .nav-links { display: flex; align-items: center; gap: 26px; font-size: 0.84rem; color: var(--muted); }
+    .nav-links a { transition: color 0.2s ease; }
+    .nav-links a:hover { color: var(--text); }
+
+    /* BOTÕES */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 11px 22px; border-radius: 999px;
+      font-size: 0.84rem; font-weight: 600;
+      background: var(--grad); color: #050806;
+      box-shadow: 0 0 22px rgba(163, 255, 18, 0.18);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 0 32px rgba(163, 255, 18, 0.32); }
+    .btn-glass {
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      border: 1px solid var(--border-strong);
+      backdrop-filter: blur(14px);
+      box-shadow: none;
+    }
+    .btn-glass:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.26);
+    }
+    .btn-sm { padding: 8px 16px; font-size: 0.78rem; }
+
+    /* HERO CARROSSEL EM CARD COM RESPIRO E PRÉVIA LATERAL */
+    .hero-section {
+      padding: 96px 0 20px;
+      position: relative;
+    }
+    .carousel-shell {
+      position: relative;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 56px;
+    }
+    .carousel-viewport {
+      overflow: hidden;
+      border-radius: 24px;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+    }
+    .carousel-track {
+      display: flex;
+      transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .hero-card {
+      flex: 0 0 100%;
+      position: relative;
+      min-height: 460px;
+      max-height: 540px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      display: flex;
+      align-items: flex-end;
+      padding: 42px 46px;
+    }
+    .hero-card-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .hero-card-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.44;
+    }
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 84% 24%, rgba(163, 255, 18, 0.14), transparent 46%),
+        linear-gradient(90deg, rgba(6, 8, 7, 0.94) 0%, rgba(6, 8, 7, 0.74) 54%, rgba(6, 8, 7, 0.24) 100%),
+        linear-gradient(0deg, rgba(6, 8, 7, 0.9) 0%, transparent 58%);
+    }
+    .hero-card-content {
+      position: relative;
+      z-index: 3;
+      max-width: 580px;
+    }
+    .hero-kicker {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--lime); margin-bottom: 10px;
+    }
+    .live-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--lime); box-shadow: 0 0 10px var(--lime);
+    }
+    h1 {
+      font-size: clamp(2.05rem, 3.8vw, 3.25rem);
+      font-weight: 700; line-height: 1.06; letter-spacing: -0.032em;
+      margin-bottom: 12px;
+    }
+    h1 em, h2 em {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic; font-weight: 400; font-size: 1.15em;
+      color: var(--lime);
+    }
+    .hero-meta {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+      font-size: 0.78rem; color: var(--muted); margin-bottom: 12px;
+    }
+    .hero-tag {
+      padding: 2px 9px; border-radius: 6px;
+      background: rgba(255, 255, 255, 0.06); border: 1px solid var(--border);
+      color: var(--text); font-size: 0.67rem; font-weight: 600; letter-spacing: 0.05em;
+    }
+    .hero-desc {
+      font-size: 0.92rem; color: #cfd6d2; max-width: 48ch; margin-bottom: 22px;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+
+    .side-peek {
+      position: absolute;
+      top: 26px;
+      bottom: 26px;
+      width: 44px;
+      border-radius: 18px;
+      overflow: hidden;
+      opacity: 0.18;
+      pointer-events: none;
+      border: 1px solid var(--border);
+      z-index: 1;
+    }
+    .side-peek.left { left: 0; }
+    .side-peek.right { right: 0; }
+    .side-peek img { width: 100%; height: 100%; object-fit: cover; }
+
+    .carousel-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%); z-index: 10;
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(6, 8, 7, 0.78);
+      border: 1px solid var(--border-strong);
+      backdrop-filter: blur(12px);
+      display: grid; place-items: center; color: var(--text);
+      transition: all 0.2s ease;
+    }
+    .carousel-arrow:hover { border-color: var(--border-lime); color: var(--lime); background: rgba(163, 255, 18, 0.12); }
+    .carousel-arrow.prev { left: 6px; }
+    .carousel-arrow.next { right: 6px; }
+
+    .carousel-dots {
+      display: flex; justify-content: center; gap: 8px; margin-top: 14px;
+    }
+    .carousel-dot {
+      width: 20px; height: 4px; border-radius: 999px;
+      background: rgba(255, 255, 255, 0.18); transition: all 0.25s ease;
+    }
+    .carousel-dot.active { width: 32px; background: var(--lime); }
+
+    /* BARRA DE FILTROS + SELETOR DE MODO */
+    .filter-bar {
+      position: sticky; top: 68px; z-index: 40;
+      background: rgba(6, 8, 7, 0.84);
+      backdrop-filter: blur(18px);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 0;
+      margin-top: 14px;
+    }
+    .filter-in {
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .pills {
+      display: flex; align-items: center; gap: 8px;
+      overflow-x: auto; scrollbar-width: none;
+    }
+    .pills::-webkit-scrollbar { display: none; }
+    .pill {
+      white-space: nowrap;
+      padding: 6px 14px; border-radius: 999px;
+      font-size: 0.78rem; font-weight: 500;
+      color: var(--muted);
+      background: var(--glass); border: 1px solid var(--border);
+      transition: all 0.2s ease;
+    }
+    .pill:hover { color: var(--text); border-color: var(--border-strong); }
+    .pill.active {
+      background: rgba(163, 255, 18, 0.13);
+      border-color: var(--border-lime);
+      color: var(--lime); font-weight: 600;
+    }
+
+    .card-mode-switch {
+      display: inline-flex; align-items: center;
+      background: var(--glass); border: 1px solid var(--border);
+      border-radius: 999px; padding: 3px; flex-shrink: 0;
+    }
+    .card-mode-switch button {
+      padding: 5px 12px; border-radius: 999px;
+      font-size: 0.72rem; font-weight: 600; color: var(--muted);
+      transition: all 0.2s ease;
+    }
+    .card-mode-switch button.active { background: var(--lime); color: #050806; }
+
+    /* TRILHOS (5 CARDS VISÍVEIS) E GRADE EXPANDIDA AO FILTRAR CATEGORIA */
+    .catalog { padding: 38px 0 64px; position: relative; z-index: 5; }
+    .rail { margin-bottom: 48px; position: relative; }
+    .rail-head {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      margin-bottom: 14px;
+    }
+    .rail-title { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.022em; }
+    .rail-count { font-size: 0.76rem; color: var(--muted); margin-left: 8px; font-weight: 500; }
+    .rail-right { display: flex; align-items: center; gap: 14px; }
+    .rail-link { font-size: 0.78rem; font-weight: 600; color: var(--lime); transition: opacity 0.2s ease; }
+    .rail-link:hover { opacity: 0.82; }
+
+    .rail-nav-btns { display: inline-flex; gap: 6px; }
+    .rail-btn {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: var(--glass); border: 1px solid var(--border);
+      display: grid; place-items: center; color: var(--muted);
+      transition: all 0.2s ease;
+    }
+    .rail-btn:hover { background: rgba(163, 255, 18, 0.12); border-color: var(--border-lime); color: var(--lime); }
+
+    /* Trilho horizontal padrão: 5 cards visíveis */
+    .rail-track {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: calc((100% - 72px) / 5);
+      gap: 18px;
+      overflow-x: auto;
+      padding: 8px 2px 14px;
+      scrollbar-width: none;
+    }
+    .rail-track::-webkit-scrollbar { display: none; }
+
+    body.mode-wide .rail-track {
+      grid-auto-columns: calc((100% - 54px) / 4);
+    }
+
+    /* Grade expandida quando uma categoria específica é clicada */
+    .rail-track.is-grid {
+      grid-auto-flow: row;
+      grid-auto-columns: unset;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 18px;
+      overflow-x: visible;
+      padding: 8px 0 14px;
+    }
+    body.mode-wide .rail-track.is-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .card {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.22s ease, box-shadow 0.25s ease;
+    }
+    .card:hover {
+      transform: translateY(-3px) scale(1.018);
+      border-color: var(--border-lime);
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.68), 0 0 18px rgba(163, 255, 18, 0.12);
+      z-index: 6;
+    }
+
+    .card-media {
+      position: relative;
+      aspect-ratio: 2 / 3;
+      background: #080b09;
+      overflow: hidden;
+      transition: aspect-ratio 0.25s ease;
+    }
+    body.mode-wide .card-media {
+      aspect-ratio: 16 / 9;
+    }
+
+    /* Encaixe inteligente da capa do YouTube sem faixas pretas e com foco central */
+    .card-media img.card-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transform: scale(1.02);
+      transition: transform 0.4s ease, filter 0.3s ease;
+    }
+    /* Card vertical (2:3) + vídeo horizontal (16:9): amplia para preencher o quadro sem sobra */
+    body:not(.mode-wide) .card[data-ratio="16:9"] .card-media img.card-thumb {
+      transform: scale(1.44);
+    }
+    /* Card vertical (2:3) + vídeo vertical (9:16): recorta faixas laterais da miniatura do YouTube */
+    body:not(.mode-wide) .card[data-ratio="9:16"] .card-media img.card-thumb {
+      transform: scale(1.72);
+    }
+    /* Card horizontal (16:9) + vídeo vertical (9:16): preenche sem bordas */
+    body.mode-wide .card[data-ratio="9:16"] .card-media img.card-thumb {
+      transform: scale(1.36);
+    }
+
+    .card:hover .card-media img.card-thumb {
+      filter: brightness(1.06);
+    }
+
+    .card-media::after {
+      content: "";
+      position: absolute; inset: 0;
+      pointer-events: none;
+      background: linear-gradient(
+        0deg,
+        rgba(5, 7, 6, 0.93) 0%,
+        rgba(5, 7, 6, 0.44) 45%,
+        rgba(5, 7, 6, 0.04) 78%,
+        rgba(5, 7, 6, 0.22) 100%
+      );
+    }
+
+    /* Selo Muv_Studio_Logo-10.png com fundo escuro para destacar transparência */
+    .card-muv {
+      position: absolute; top: 10px; left: 10px; z-index: 2;
+      width: 26px; height: 26px; border-radius: 7px; overflow: hidden;
+      padding: 3px;
+      background: rgba(5, 8, 6, 0.86);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(163, 255, 18, 0.36);
+    }
+    .card-muv img { width: 100%; height: 100%; object-fit: contain; }
+
+    .card-overlay {
+      position: absolute; inset: auto 13px 13px 13px; z-index: 2;
+    }
+    .card-kicker {
+      display: block;
+      font-size: 0.63rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase;
+      color: var(--lime); margin-bottom: 3px;
+    }
+    .card-title {
+      font-size: 0.92rem; font-weight: 600; color: #f6f8f7;
+      line-height: 1.25;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    }
+
+    /* BASTIDORES */
+    .bts {
+      padding: 64px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.015) 0%, rgba(163, 255, 18, 0.025) 100%);
+    }
+    .bts-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 40px; align-items: center; }
+    .bts h2 { font-size: clamp(1.8rem, 3.2vw, 2.45rem); line-height: 1.1; letter-spacing: -0.025em; margin-bottom: 12px; }
+    .bts p { color: var(--muted); font-size: 0.94rem; margin-bottom: 22px; }
+    .bts-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .bts-card {
+      background: var(--glass); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+      transition: border-color 0.2s ease;
+    }
+    .bts-card:hover { border-color: var(--border-strong); }
+    .bts-card img { aspect-ratio: 16 / 10; width: 100%; object-fit: cover; }
+    .bts-card-body { padding: 13px 15px; }
+    .bts-card-body strong { display: block; font-size: 0.86rem; margin-bottom: 2px; }
+    .bts-card-body span { font-size: 0.76rem; color: var(--muted); }
+
+    /* SOLUÇÕES POR SEGMENTO */
+    .hub { padding: 72px 0; }
+    .hub-head { max-width: 600px; margin-bottom: 30px; }
+    .hub-head h2 { font-size: clamp(1.75rem, 3vw, 2.35rem); letter-spacing: -0.025em; margin-bottom: 8px; }
+    .hub-head p { color: var(--muted); font-size: 0.94rem; }
+    .hub-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .hub-card {
+      background: var(--glass); border: 1px solid var(--border);
+      border-radius: 16px; padding: 24px;
+      display: flex; flex-direction: column; justify-content: space-between; gap: 18px;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+    .hub-card:hover { transform: translateY(-2px); background: var(--glass-hover); border-color: var(--border-lime); }
+    .hub-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+    .hub-icon {
+      width: 34px; height: 34px; border-radius: 9px;
+      display: grid; place-items: center;
+      background: rgba(163, 255, 18, 0.07);
+      border: 1px solid rgba(163, 255, 18, 0.24);
+      color: var(--lime);
+    }
+    .hub-tag { font-size: 0.66rem; font-weight: 700; letter-spacing: 0.11em; text-transform: uppercase; color: var(--muted); }
+    .hub-card h3 { font-size: 1.05rem; letter-spacing: -0.015em; margin-bottom: 6px; }
+    .hub-card p { font-size: 0.84rem; color: var(--muted); }
+    .hub-link { font-size: 0.8rem; font-weight: 600; color: var(--text); transition: color 0.2s ease; }
+    .hub-card:hover .hub-link { color: var(--lime); }
+
+    /* RODAPÉ EM COLUNAS */
+    .footer {
+      border-top: 1px solid var(--border);
+      background: #050706;
+      padding: 58px 0 34px;
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.4fr repeat(3, 1fr);
+      gap: 36px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.065);
+    }
+    .footer-brand-desc {
+      margin-top: 12px;
+      max-width: 30ch;
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+    .footer-col h4 {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      color: var(--text);
+      margin-bottom: 14px;
+      font-weight: 600;
+    }
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+    .footer-col a { color: var(--muted); transition: color 0.2s ease; }
+    .footer-col a:hover { color: var(--lime); }
+    .footer-bottom {
+      padding-top: 22px;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px;
+      font-size: 0.78rem;
+    }
+
+    /* MODAL PLAYER */
+    .modal-backdrop {
+      position: fixed; inset: 0; z-index: 90;
+      background: rgba(3, 5, 4, 0.88);
+      backdrop-filter: blur(16px);
+      display: none; align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .modal-backdrop.open { display: flex; }
+
+    .modal-box {
+      width: min(920px, 100%);
+      max-height: 92vh;
+      overflow-y: auto;
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: 20px;
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.85);
+      transition: width 0.25s ease;
+    }
+    .modal-box.is-vertical { width: min(430px, 100%); }
+
+    .modal-top {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      padding: 13px 18px;
+      border-bottom: 1px solid var(--border);
+    }
+    .modal-brand { display: flex; align-items: center; gap: 9px; font-size: 0.8rem; color: var(--muted); }
+    .modal-brand img {
+      width: 22px; height: 22px; border-radius: 6px; object-fit: contain; padding: 2px;
+      background: rgba(5, 8, 6, 0.9);
+      border: 1px solid rgba(163, 255, 18, 0.28);
+    }
+
+    .modal-top-right { display: flex; align-items: center; gap: 8px; }
+    .btn-info {
+      padding: 6px 13px; border-radius: 999px;
+      font-size: 0.76rem; font-weight: 600;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: var(--text);
+      transition: all 0.2s ease;
+    }
+    .btn-info:hover, .btn-info.active {
+      background: rgba(163, 255, 18, 0.13);
+      border-color: var(--border-lime);
+      color: var(--lime);
+    }
+    .modal-close {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      display: grid; place-items: center; font-size: 1rem; color: var(--muted);
+    }
+    .modal-close:hover { color: var(--text); background: rgba(255, 255, 255, 0.12); }
+
+    .modal-player { position: relative; aspect-ratio: 16 / 9; background: #000; }
+    .modal-box.is-vertical .modal-player { aspect-ratio: 9 / 16; max-height: 62vh; margin: 0 auto; }
+    .modal-player iframe { width: 100%; height: 100%; border: 0; }
+
+    .credits-panel {
+      display: none;
+      padding: 16px 20px;
+      background: rgba(163, 255, 18, 0.035);
+      border-top: 1px solid var(--border-lime);
+      border-bottom: 1px solid var(--border);
+    }
+    .credits-panel.open { display: block; }
+    .credits-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px 18px; }
+    .credit-box span {
+      display: block; font-size: 0.64rem; text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--lime); font-weight: 700; margin-bottom: 2px;
+    }
+    .credit-box strong { font-size: 0.84rem; font-weight: 600; color: var(--text); }
+
+    .modal-foot {
+      padding: 16px 20px;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px;
+    }
+    .modal-foot h3 { font-size: 1.08rem; margin-bottom: 2px; }
+    .modal-foot p { font-size: 0.82rem; color: var(--muted); }
+    .modal-foot-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    @media (max-width: 1100px) {
+      .rail-track { grid-auto-columns: calc((100% - 48px) / 4); }
+      .rail-track.is-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      body.mode-wide .rail-track.is-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .footer-top { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 820px) {
+      .wrap { width: calc(100% - 36px); }
+      .carousel-shell { padding: 0 12px; }
+      .side-peek { display: none; }
+      .hero-card { padding: 28px 24px; min-height: 410px; }
+      .rail-track { grid-auto-columns: 46%; }
+      body.mode-wide .rail-track { grid-auto-columns: 64%; }
+      .rail-track.is-grid, body.mode-wide .rail-track.is-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .bts-grid, .hub-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .carousel-arrow { display: none; }
+    }
+    @media (max-width: 560px) {
+      .wrap { width: calc(100% - 28px); }
+      .rail-track { grid-auto-columns: 66%; }
+      .rail-track.is-grid, body.mode-wide .rail-track.is-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+      .card-mode-switch { display: none; }
+      .footer-top { grid-template-columns: 1fr; }
+      .credits-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="wrap header-in">
+      <a class="brand" href="#topo" aria-label="MUV STUDIO Início">
+        <img class="brand-icon" src="assets/img/Muv_Studio_Logo-10.png" alt="">
+        <img class="brand-logo" src="assets/img/logo-horizontal.png" alt="MUV STUDIO">
+      </a>
+
+      <nav class="nav-links" aria-label="Navegação">
+        <a href="#catalogo">Catálogo</a>
+        <a href="#bastidores">Bastidores</a>
+        <a href="#solucoes">Soluções</a>
+        <a href="agencias-produtoras/index.html">Agências & Produtoras</a>
+      </nav>
+
+      <a class="btn btn-sm" href="https://wa.me/5571996068535?text=Ol%C3%A1%20Neri%2C%20vi%20o%20cat%C3%A1logo%20da%20MUV%20STUDIO%20e%20quero%20conversar%20sobre%20um%20projeto." target="_blank" rel="noopener">Orçar projeto</a>
+    </div>
+  </header>
+
+  <main id="topo">
+    <!-- CARROSSEL DE DESTAQUES EM CARD ARREDONDADO COM RESPIRO -->
+    <section class="hero-section" aria-label="Destaques em movimento">
+      <div class="carousel-shell">
+        <div class="side-peek left" aria-hidden="true">
+          <img src="assets/img/wallpaper5-vidro.jpg" alt="">
+        </div>
+
+        <button class="carousel-arrow prev" type="button" id="c-prev" aria-label="Slide anterior">‹</button>
+        <button class="carousel-arrow next" type="button" id="c-next" aria-label="Próximo slide">›</button>
+
+        <div class="carousel-viewport">
+          <div class="carousel-track" id="c-track">
+            <article class="hero-card">
+              <div class="hero-card-bg">
+                <img src="assets/img/04-luz-dramatica.png" alt="Showreel MUV STUDIO">
+              </div>
+              <div class="hero-card-content">
+                <div class="hero-kicker">
+                  <span class="live-dot"></span>
+                  <span>Destaque · Showreel</span>
+                </div>
+                <h1>Ritmo, cor e <em>acabamento</em> em cada frame.</h1>
+                <div class="hero-meta">
+                  <span class="hero-tag">DEMOREEL</span>
+                  <span>Campanhas · Comerciais · Eventos · Pós-Produção</span>
+                </div>
+                <p class="hero-desc">Um recorte rápido do que produzimos e editamos para marcas, agências, produtoras e criadores.</p>
+                <div class="hero-actions">
+                  <button class="btn" type="button" onclick="openProject('motion-vfx', 0)">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    <span>Assistir Showreel</span>
+                  </button>
+                  <a class="btn btn-glass" href="#catalogo">Explorar catálogo ↓</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="hero-card">
+              <div class="hero-card-bg">
+                <img src="assets/img/wallpaper7-camadas.jpg" alt="Bastidores de edição e motion">
+              </div>
+              <div class="hero-card-content">
+                <div class="hero-kicker">
+                  <span class="live-dot"></span>
+                  <span>Bastidores · Timeline & Pós</span>
+                </div>
+                <h1>Por dentro da <em>montagem</em> e do VFX.</h1>
+                <div class="hero-meta">
+                  <span class="hero-tag">MOTION & VFX</span>
+                  <span>Decupagem · Motion Graphics · Composição · Color</span>
+                </div>
+                <p class="hero-desc">Como transformamos brutos, multicam e cronogramas apertados em peças prontas para exibição.</p>
+                <div class="hero-actions">
+                  <button class="btn" type="button" onclick="openProject('motion-vfx', 1)">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    <span>Ver Pós & Motion</span>
+                  </button>
+                  <a class="btn btn-glass" href="agencias-produtoras/index.html">Página Agências & Produtoras</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="hero-card">
+              <div class="hero-card-bg">
+                <img src="assets/img/wallpaper5-vidro.jpg" alt="Produções finalizadas MUV STUDIO">
+              </div>
+              <div class="hero-card-content">
+                <div class="hero-kicker">
+                  <span class="live-dot"></span>
+                  <span>Obra em Destaque · Acervo</span>
+                </div>
+                <h1>Do set à <em>entrega</em> com assinatura de estúdio.</h1>
+                <div class="hero-meta">
+                  <span class="hero-tag">CATÁLOGO</span>
+                  <span>Aftermovies · Corporativo · Esportes · Documentários</span>
+                </div>
+                <p class="hero-desc">Projetos autorais, execuções em parceria com produtoras e formatos variados separados por nicho.</p>
+                <div class="hero-actions">
+                  <button class="btn" type="button" onclick="openProject('aftermovies', 0)">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    <span>Assistir case</span>
+                  </button>
+                  <a class="btn btn-glass" href="#catalogo">Ver nichos ↓</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="side-peek right" aria-hidden="true">
+          <img src="assets/img/wallpaper7-camadas.jpg" alt="">
+        </div>
+      </div>
+
+      <div class="carousel-dots" id="c-dots">
+        <button class="carousel-dot active" type="button" data-idx="0" aria-label="Slide 1"></button>
+        <button class="carousel-dot" type="button" data-idx="1" aria-label="Slide 2"></button>
+        <button class="carousel-dot" type="button" data-idx="2" aria-label="Slide 3"></button>
+      </div>
+    </section>
+
+    <!-- BARRA DE FILTROS -->
+    <div class="filter-bar" id="catalogo">
+      <div class="wrap filter-in">
+        <div class="pills" role="tablist" aria-label="Filtrar por nicho">
+          <button class="pill active" type="button" data-filter="all">Todos os trilhos</button>
+          <button class="pill" type="button" data-filter="aftermovies">Aftermovies · Festas</button>
+          <button class="pill" type="button" data-filter="corridas-esportes">Corridas & Esportes</button>
+          <button class="pill" type="button" data-filter="corporativo-eventos">Eventos Corporativos</button>
+          <button class="pill" type="button" data-filter="imobiliario">Imobiliário & Obras</button>
+          <button class="pill" type="button" data-filter="moda-fashion">Moda & Fashion Film</button>
+          <button class="pill" type="button" data-filter="comerciais-vt">Comerciais & VTs</button>
+          <button class="pill" type="button" data-filter="motion-vfx">Motion & VFX</button>
+          <button class="pill" type="button" data-filter="reels-criadores">Reels & Criadores</button>
+          <button class="pill" type="button" data-filter="doc-reality">Doc & Reality</button>
+          <button class="pill" type="button" data-filter="podcast">Podcast</button>
+          <button class="pill" type="button" data-filter="anormale">Anormale Company</button>
+        </div>
+
+        <div class="card-mode-switch" title="Alternar entre capa vertical (DVD) e horizontal">
+          <button type="button" class="active" id="mode-poster">Capa (2:3)</button>
+          <button type="button" id="mode-wide">Wide (16:9)</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRILHOS / GRADE DE CATÁLOGO -->
+    <section class="catalog">
+      <div class="wrap" id="rails-root"></div>
+    </section>
+
+    <!-- BASTIDORES -->
+    <section class="bts" id="bastidores">
+      <div class="wrap bts-grid">
+        <div>
+          <span class="hero-kicker"><span class="live-dot"></span><span>Bastidores & Processo</span></span>
+          <h2>O que acontece <em>por trás</em> da tela final.</h2>
+          <p>Captação 4K, organização de brutos, ritmo de montagem, motion graphics, cor e mixagem. Cada etapa pensada para entregar consistência sem dor de cabeça.</p>
+          <a class="btn btn-glass" href="agencias-produtoras/index.html#etapas">Ver fluxo de produção →</a>
+        </div>
+        <div class="bts-cards">
+          <article class="bts-card">
+            <img src="assets/img/04-luz-dramatica.png" alt="Captação em set">
+            <div class="bts-card-body">
+              <strong>Set & Captação</strong>
+              <span>Iluminação, câmera e direção pontual</span>
+            </div>
+          </article>
+          <article class="bts-card">
+            <img src="assets/img/wallpaper7-camadas.jpg" alt="Timeline e pós-produção">
+            <div class="bts-card-body">
+              <strong>Timeline, VFX & Cor</strong>
+              <span>Montagem, camadas gráficas e finalização</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOLUÇÕES POR SEGMENTO -->
+    <section class="hub" id="solucoes">
+      <div class="wrap">
+        <div class="hub-head">
+          <span class="hero-kicker"><span class="live-dot"></span><span>Atendimento & Escopos</span></span>
+          <h2>Soluções por <em>segmento</em></h2>
+          <p>Canais diretos de acordo com o formato do seu projeto ou operação.</p>
+        </div>
+
+        <div class="hub-grid">
+          <article class="hub-card">
+            <div>
+              <div class="hub-top">
+                <div class="hub-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                </div>
+                <span class="hub-tag">B2B</span>
+              </div>
+              <h3>Agências & Produtoras</h3>
+              <p>Edição, motion/VFX e captação sob demanda ou em lote para escalar entregas.</p>
+            </div>
+            <a class="hub-link" href="agencias-produtoras/index.html">Acessar página →</a>
+          </article>
+
+          <article class="hub-card">
+            <div>
+              <div class="hub-top">
+                <div class="hub-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+                </div>
+                <span class="hub-tag">Marcas & Eventos</span>
+              </div>
+              <h3>Empresas, Criadores & Aftermovies</h3>
+              <p>Campanhas, posicionamento digital, festas e eventos corporativos.</p>
+            </div>
+            <a class="hub-link" href="https://wa.me/5571996068535?text=Ol%C3%A1%20Neri%2C%20quero%20cotar%20produ%C3%A7%C3%A3o%20para%20Marcas%2C%20Criadores%20ou%20Eventos." target="_blank" rel="noopener">Falar no WhatsApp →</a>
+          </article>
+
+          <article class="hub-card">
+            <div>
+              <div class="hub-top">
+                <div class="hub-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                </div>
+                <span class="hub-tag">Recorrência</span>
+              </div>
+              <h3>Concessionárias, Imobiliárias, Saúde & Jurídico</h3>
+              <p>Produção recorrente em lote para vitrine, autoridade e presença contínua.</p>
+            </div>
+            <a class="hub-link" href="https://wa.me/5571996068535?text=Ol%C3%A1%20Neri%2C%20tenho%20interesse%20em%20pacotes%20recorrentes%20para%20meu%20neg%C3%B3cio." target="_blank" rel="noopener">Consultar pacotes →</a>
+          </article>
+
+          <article class="hub-card">
+            <div>
+              <div class="hub-top">
+                <div class="hub-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                </div>
+                <span class="hub-tag">Hospitalidade</span>
+              </div>
+              <h3>Hotelaria (Hotéis & Pousadas)</h3>
+              <p>Filmes de experiência, ambientação e tours visuais para hotéis e pousadas.</p>
+            </div>
+            <a class="hub-link" href="https://wa.me/5571996068535?text=Ol%C3%A1%20Neri%2C%20quero%20conversar%20sobre%20audiovisual%20para%20Hotelaria." target="_blank" rel="noopener">Solicitar proposta →</a>
+          </article>
+
+          <article class="hub-card">
+            <div>
+              <div class="hub-top">
+                <div class="hub-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+                </div>
+                <span class="hub-tag">Autoral</span>
+              </div>
+              <h3>Anormale Company</h3>
+              <p>Videoclipes, direção criativa, estética autoral e projetos musicais.</p>
+            </div>
+            <a class="hub-link" href="https://wa.me/5571996068535?text=Ol%C3%A1%20Neri%2C%20quero%20falar%20sobre%20um%20videoclipe%20%2F%20Anormale%20Company." target="_blank" rel="noopener">Iniciar projeto →</a>
+          </article>
+
+          <article class="hub-card">
+            <div>
+              <div class="hub-top">
+                <div class="hub-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+                </div>
+                <span class="hub-tag">Long-Form & Social</span>
+              </div>
+              <h3>Documentário, Reality, Podcast & Reels</h3>
+              <p>Montagem narrativa, multicam, episódios e cortes para distribuição.</p>
+            </div>
+            <a class="hub-link" href="https://wa.me/5571996068535?text=Ol%C3%A1%20Neri%2C%20quero%20cotar%20edi%C3%A7%C3%A3o%20para%20Document%C3%A1rio%2C%20Reality%2C%20Podcast%20ou%20Reels." target="_blank" rel="noopener">Cotar edição →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- RODAPÉ EM COLUNAS -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div>
+          <a class="brand" href="#topo">
+            <img class="brand-icon" src="assets/img/Muv_Studio_Logo-10.png" alt="">
+            <img class="brand-logo" src="assets/img/logo-horizontal.png" alt="MUV STUDIO">
+          </a>
+          <p class="footer-brand-desc">Estúdio de edição, pós-produção, motion/VFX e captação. Inclui a frente autoral Anormale Company.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Catálogo</h4>
+          <ul>
+            <li><a href="#catalogo" onclick="setFilter('aftermovies')">Aftermovies & Festas</a></li>
+            <li><a href="#catalogo" onclick="setFilter('corridas-esportes')">Corridas & Esportes</a></li>
+            <li><a href="#catalogo" onclick="setFilter('corporativo-eventos')">Eventos Corporativos</a></li>
+            <li><a href="#catalogo" onclick="setFilter('imobiliario')">Imobiliário & Obras</a></li>
+            <li><a href="#catalogo" onclick="setFilter('moda-fashion')">Moda & Fashion Film</a></li>
+            <li><a href="#catalogo" onclick="setFilter('comerciais-vt')">Comerciais & VTs</a></li>
+            <li><a href="#catalogo" onclick="setFilter('motion-vfx')">Motion & VFX</a></li>
+            <li><a href="#catalogo" onclick="setFilter('doc-reality')">Documentário & Reality</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Atendimento</h4>
+          <ul>
+            <li><a href="agencias-produtoras/index.html">Agências & Produtoras</a></li>
+            <li><a href="#bastidores">Bastidores & Processo</a></li>
+            <li><a href="#solucoes">Soluções por Segmento</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contato</h4>
+          <ul>
+            <li><a href="https://wa.me/5571996068535" target="_blank" rel="noopener">WhatsApp</a></li>
+            <li><a href="https://instagram.com/neri.rec" target="_blank" rel="noopener">Instagram (@neri.rec)</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 MUV STUDIO · Todos os direitos reservados.</span>
+        <span>Catálogo & Pós-Produção Audiovisual</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL PLAYER -->
+  <div class="modal-backdrop" id="modal" role="dialog" aria-modal="true" aria-labelledby="m-title">
+    <div class="modal-box" id="modal-box">
+      <div class="modal-top">
+        <div class="modal-brand">
+          <img src="assets/img/Muv_Studio_Logo-10.png" alt="">
+          <span id="m-rail">Catálogo MUV STUDIO</span>
+        </div>
+
+        <div class="modal-top-right">
+          <button class="btn-info" type="button" id="btn-info" aria-expanded="false">+ Informações</button>
+          <button class="modal-close" type="button" id="btn-close" aria-label="Fechar">✕</button>
+        </div>
+      </div>
+
+      <div class="modal-player">
+        <iframe id="m-iframe" src="" title="Player MUV STUDIO" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+
+      <div class="credits-panel" id="credits-panel">
+        <div class="credits-grid">
+          <div class="credit-box">
+            <span>Escopo</span>
+            <strong id="c-scope">-</strong>
+          </div>
+          <div class="credit-box">
+            <span>Cliente / Projeto</span>
+            <strong id="c-client">-</strong>
+          </div>
+          <div class="credit-box">
+            <span>Produção / Origem</span>
+            <strong id="c-origin">-</strong>
+          </div>
+          <div class="credit-box">
+            <span>Formato</span>
+            <strong id="c-format">-</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-foot">
+        <div>
+          <h3 id="m-title">Título</h3>
+          <p id="m-sub">Subtítulo</p>
+        </div>
+        <div class="modal-foot-actions">
+          <a class="btn btn-glass btn-sm" id="m-niche" href="agencias-produtoras/index.html">Ver nicho</a>
+          <a class="btn btn-sm" id="m-wa" href="https://wa.me/5571996068535" target="_blank" rel="noopener">Cotar similar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const ytThumb = (id) => `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+
+    // Ordenados por relevância de portfólio em cada trilho (destaques à frente)
+    const rails = [
+      {
+        id: "aftermovies",
+        title: "Aftermovies · Festas, Carnaval & Shows",
+        linkText: "Cotar aftermovie →",
+        linkHref: "https://wa.me/5571996068535?text=Ol%C3%A1%20Neri%2C%20quero%20cotar%20um%20Aftermovie.",
+        items: [
+          { title: "Camarote Brahma - Larissa Fagundes - Carnaval 2025 (Dia1)", kicker: "Carnaval · Destaque", ratio: "9:16", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "DuTfSPMXfLQ", sub: "Dia 1 no Camarote Brahma com Larissa Fagundes · Carnaval 2025", scope: "Captação & Edição", client: "Camarote Brahma · Larissa Fagundes", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Claudia Leite - Cidade Jardim festival", kicker: "Festival / Show", ratio: "9:16", thumb: "assets/img/04-luz-dramatica.png", yt: "Yp3sM0m38w0", sub: "Claudia Leitte no Cidade Jardim Festival", scope: "Captação & Edição", client: "Cidade Jardim Festival", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Mansão Green - Aftermovie", kicker: "Aftermovie", ratio: "9:16", thumb: "assets/img/04-luz-dramatica.png", yt: "oT7tMml2Vxw", sub: "Aftermovie vertical da Mansão Green", scope: "Captação, Edição & Ritmo", client: "Mansão Green", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Motion v3 - Camarote Planeta Band - Carnaval 2026", kicker: "Carnaval", ratio: "9:16", thumb: "assets/img/04-luz-dramatica.png", yt: "gmi8gAbvDqQ", sub: "Peça Carnaval 2026 · Camarote Planeta Band", scope: "Motion & Edição", client: "Camarote Planeta Band", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Feijoada Noite e Dia - Aftermovie", kicker: "Aftermovie", ratio: "9:16", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "h_DGhcwN1Is", sub: "Aftermovie da Feijoada Noite e Dia", scope: "Captação & Edição", client: "Feijoada Noite e Dia", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Aftermovie - Boate Primeira Saída - Pituba/Salvador/BA", kicker: "Aftermovie", ratio: "9:16", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "4rMSOi5IrgE", sub: "Aftermovie na Boate Primeira Saída, Pituba/Salvador/BA", scope: "Captação & Edição", client: "Boate Primeira Saída", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "DJ KEKO - Calourada Med - Aftermovie", kicker: "Aftermovie", ratio: "9:16", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "WarI6oqNLr8", sub: "Aftermovie de DJ KEKO na Calourada Med", scope: "Captação & Edição", client: "Calourada Med · DJ KEKO", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "JUD Salvador - DJ KEKO", kicker: "Show / DJ", ratio: "9:16", thumb: "assets/img/04-luz-dramatica.png", yt: "FgBWu1WMQEw", sub: "DJ KEKO no JUD Salvador", scope: "Captação & Edição", client: "JUD Salvador · DJ KEKO", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Panaceia - InterMed Salvador - DJ KEKO", kicker: "Festa / DJ", ratio: "9:16", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "p5XFolRvTZw", sub: "DJ KEKO na Panaceia · InterMed Salvador", scope: "Captação & Edição", client: "Panaceia · InterMed Salvador", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Vaquejada - Partiu Songa 2025", kicker: "Evento / Festa", ratio: "9:16", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "uWVOvEFUS8Q", sub: "Registro da vaquejada Partiu Songa 2025", scope: "Captação & Edição", client: "Partiu Songa 2025", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Motion v2 - Camarote Planeta Band - Carnaval 2026", kicker: "Carnaval", ratio: "16:9", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "ewxnHz8lu14", sub: "Peça Carnaval 2026 v2 · Camarote Planeta Band", scope: "Motion Graphics", client: "Camarote Planeta Band", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "Motion v1 - Camarote Planeta Band - Carnaval 2026", kicker: "Carnaval", ratio: "16:9", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "Sqd_ibl0_rQ", sub: "Peça Carnaval 2026 v1 · Camarote Planeta Band", scope: "Motion Graphics", client: "Camarote Planeta Band", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" }
+        ]
+      },
+      {
+        id: "corridas-esportes",
+        title: "Corridas & Eventos Esportivos",
+        linkText: "Cotar cobertura esportiva →",
+        linkHref: "https://wa.me/5571996068535?text=Ol%C3%A1%20Neri%2C%20quero%20cotar%20cobertura%20de%20Corrida%20ou%20Evento%20Esportivo.",
+        items: [
+          { title: "Corrida Salvador 10 Milhas (2025)", kicker: "Corrida de Rua · Destaque", ratio: "16:9", thumb: "assets/img/04-luz-dramatica.png", yt: "uhslUn3vxjY", sub: "Cobertura oficial da Corrida Salvador 10 Milhas 2025", scope: "Captação & Edição", client: "Corrida Salvador 10 Milhas", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "Corrida Sesab (2025)", kicker: "Corrida de Rua", ratio: "16:9", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "wAJl_wIoQRw", sub: "Cobertura da Corrida Sesab 2025", scope: "Captação & Edição", client: "Corrida Sesab 2025", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "Corrida de Rua Record (2025)", kicker: "Corrida de Rua", ratio: "16:9", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "nfS97fn9gZA", sub: "Cobertura da Corrida de Rua Record 2025", scope: "Captação & Edição", client: "Corrida de Rua Record 2025", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "FBJJMMA 2025 - Imperial JiuJitsu", kicker: "Jiu-Jitsu / Campeonato", ratio: "9:16", thumb: "assets/img/04-luz-dramatica.png", yt: "gULmwWZRQBc", sub: "Cobertura do FBJJMMA 2025 com Imperial JiuJitsu", scope: "Captação & Edição", client: "Imperial JiuJitsu · FBJJMMA", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Corrida TJBA (2025)", kicker: "Corrida de Rua", ratio: "9:16", thumb: "assets/img/04-luz-dramatica.png", yt: "RpNLqkt59nk", sub: "Cobertura vertical da Corrida TJBA 2025", scope: "Captação & Edição", client: "Corrida TJBA 2025", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Corrida Magic - Teaser", kicker: "Teaser · Corrida", ratio: "16:9", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "9e0OronHLbk", sub: "Teaser horizontal de divulgação da Corrida Magic", scope: "Edição & Ritmo", client: "Corrida Magic", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "Maratona Magic - Teaser", kicker: "Teaser · Maratona", ratio: "9:16", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "bi5qD4jy97s", sub: "Teaser vertical da Maratona Magic", scope: "Edição & Ritmo", client: "Maratona Magic", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Imperial JiuJitsu - Confra 2025", kicker: "Jiu-Jitsu / Evento", ratio: "9:16", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "Po9SMlW3Lo8", sub: "Confraternização 2025 da Imperial JiuJitsu", scope: "Captação & Edição", client: "Imperial JiuJitsu", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" }
+        ]
+      },
+      {
+        id: "corporativo-eventos",
+        title: "Eventos Corporativos, Congressos & Inaugurações",
+        linkText: "Cotar evento corporativo →",
+        linkHref: "https://wa.me/5571996068535?text=Ol%C3%A1%20Neri%2C%20quero%20cotar%20cobertura%20de%20Evento%20Corporativo%20ou%20Congresso.",
+        items: [
+          { title: "TT PRODUCTIONS - Microsoft AI Tour 2026", kicker: "Congresso / Tech · Destaque", ratio: "9:16", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "-wjwru3vd7g", sub: "Cobertura Microsoft AI Tour 2026 com TT Productions", scope: "Edição & Cobertura", client: "TT Productions · Microsoft AI Tour", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "SBOT 2025 MAKING OF TTPRODUCTIONS FINAL", kicker: "Congresso / Making Of", ratio: "16:9", thumb: "assets/img/04-luz-dramatica.png", yt: "UBHmCXvLJSM", sub: "Making of final do SBOT 2025 com TT Productions", scope: "Edição & Finalização", client: "TT Productions · SBOT 2025", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "Missão Brasília - CDL - Feira de Santana", kicker: "Corporativo / CDL", ratio: "16:9", thumb: "assets/img/04-luz-dramatica.png", yt: "vdBvlhr9lJM", sub: "Registro da Missão Brasília com a CDL de Feira de Santana", scope: "Captação & Edição", client: "CDL Feira de Santana", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "TXT Build - Confraternização 2025", kicker: "Corporativo", ratio: "16:9", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "2UBtairMrjk", sub: "Confraternização 2025 da TXT Build", scope: "Captação & Edição", client: "TXT Build", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "TOVCARE SBOT 2025", kicker: "Congresso Médico", ratio: "16:9", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "bJOB2RWKSv8", sub: "Cobertura Tovcare no congresso SBOT 2025", scope: "Edição & Pós-Produção", client: "Tovcare · SBOT 2025", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "NOS 2 SBOT2025 final", kicker: "Congresso", ratio: "16:9", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "Cq4VlPD0kiU", sub: "Versão final Nos 2 para o SBOT 2025", scope: "Edição & Finalização", client: "SBOT 2025", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "EAGRO MONCOC 2025", kicker: "Feira / Agro", ratio: "9:16", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "rp06_YXIXPI", sub: "Cobertura vertical do EAGRO MONCOC 2025", scope: "Captação & Edição", client: "EAGRO MONCOC 2025", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Clínica Raianny Lima - Inauguração Salvador-BA", kicker: "Inauguração", ratio: "9:16", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "gdBN-cPe-is", sub: "Inauguração em Salvador-BA com estética de marca", scope: "Captação & Edição", client: "Clínica Raianny Lima", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Smarçaro - Inauguração - Pituba-Salvador/BA", kicker: "Inauguração", ratio: "9:16", thumb: "assets/img/04-luz-dramatica.png", yt: "dY1IJB7Jwu8", sub: "Cobertura de inauguração na Pituba, Salvador/BA", scope: "Captação & Edição", client: "Smarçaro", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "AlumiLider - After Inauguração", kicker: "Inauguração", ratio: "9:16", thumb: "assets/img/04-luz-dramatica.png", yt: "SL5TIe-Y7ng", sub: "Resumo pós-inauguração da AlumiLider", scope: "Captação & Edição", client: "AlumiLider", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "DIA4 TT PRODUCTIONS MicrosoftAITour", kicker: "Congresso / Tech", ratio: "9:16", thumb: "assets/img/04-luz-dramatica.png", yt: "qpFlFjv0GJA", sub: "Dia 4 da cobertura Microsoft AI Tour com TT Productions", scope: "Edição & Cobertura", client: "TT Productions · Microsoft AI Tour", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "DIA3 TT PRODUCTIONS MicrosoftAITour", kicker: "Congresso / Tech", ratio: "9:16", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "pEcIpEkfISg", sub: "Dia 3 da cobertura Microsoft AI Tour com TT Productions", scope: "Edição & Cobertura", client: "TT Productions · Microsoft AI Tour", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "DIA2 TT PRODUCTIONS MicrosoftAITour", kicker: "Congresso / Tech", ratio: "9:16", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "_0qFgn8WCWo", sub: "Dia 2 da cobertura Microsoft AI Tour com TT Productions", scope: "Edição & Cobertura", client: "TT Productions · Microsoft AI Tour", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "TT PRODUCTIONS MicrosoftAITour DIA1 v3", kicker: "Congresso / Tech", ratio: "9:16", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "H-q1ZySdvGk", sub: "Versão 3 do Dia 1 Microsoft AI Tour com TT Productions", scope: "Edição & Cobertura", client: "TT Productions · Microsoft AI Tour", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "TT PRODUCTIONS MicrosoftAITour DIA1", kicker: "Congresso / Tech", ratio: "9:16", thumb: "assets/img/04-luz-dramatica.png", yt: "kcSfdV2cCZU", sub: "Dia 1 da cobertura Microsoft AI Tour com TT Productions", scope: "Edição & Cobertura", client: "TT Productions · Microsoft AI Tour", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Smarçaro - Inauguração - Pituba-Salvador/BA (v2)", kicker: "Inauguração", ratio: "9:16", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "nYvAdCCORI8", sub: "Registro vertical da inauguração em Salvador/BA", scope: "Captação & Edição", client: "Smarçaro", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" }
+        ]
+      },
+      {
+        id: "imobiliario",
+        title: "Imobiliário, Arquitetura & Obras",
+        linkText: "Cotar imobiliário →",
+        linkHref: "https://wa.me/5571996068535?text=Ol%C3%A1%20Neri%2C%20quero%20cotar%20v%C3%ADdeos%20para%20Imobili%C3%A1ria%2C%20Construtora%20ou%20Arquitetura.",
+        items: [
+          { title: "Casa de 25 Milhões - Praia do Forte-BA (Tour)", kicker: "Alto Padrão · Destaque", ratio: "9:16", thumb: "assets/img/04-luz-dramatica.png", yt: "_vFnEWdAFNo", sub: "Tour vertical por residência em Praia do Forte-BA", scope: "Captação & Edição", client: "Praia do Forte-BA", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Washington Tower Residence - (Tour I.A.)", kicker: "Tour · IA", ratio: "16:9", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "aSo7-zX10gw", sub: "Tour assistido por IA para Washington Tower Residence", scope: "Edição & IA", client: "Washington Tower Residence", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "Icone Connect Residende - Carozzo (VT 3D)", kicker: "VT 3D", ratio: "16:9", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "UE5fUsoFSUc", sub: "VT 3D do Ícone Connect Residence com Carozzo", scope: "Edição & 3D", client: "Carozzo · Ícone Connect Residence", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "Viva Vista Harmonia (VT 3D)", kicker: "VT 3D", ratio: "16:9", thumb: "assets/img/04-luz-dramatica.png", yt: "AK9LyeHe_8c", sub: "VT em 3D do empreendimento Viva Vista Harmonia", scope: "Edição & 3D", client: "Viva Vista Harmonia", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "Portal das Esmeraldas - Pedra Construtora (VT TV)", kicker: "Construtora", ratio: "16:9", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "nMfBDj4WMvk", sub: "VT TV Portal das Esmeraldas para Pedra Construtora", scope: "Edição & Finalização", client: "Pedra Construtora", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "Arquitetura Amais - Tour Guarajuba", kicker: "Arquitetura", ratio: "16:9", thumb: "assets/img/04-luz-dramatica.png", yt: "xFmd5Dh3P7U", sub: "Tour em Guarajuba com Arquitetura Amais", scope: "Captação & Edição", client: "Arquitetura Amais", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "Grão Oscar - Empreendimento - (VT + 3D)", kicker: "VT + 3D", ratio: "9:16", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "OsCzo3ZbqjM", sub: "Apresentação de empreendimento com VT e 3D", scope: "Edição, Motion & 3D", client: "Grão Oscar", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Ícone Connect Residence - CAROZZO", kicker: "Empreendimento", ratio: "9:16", thumb: "assets/img/04-luz-dramatica.png", yt: "LTWOtIzd3bY", sub: "Filme vertical do Ícone Connect Residence com Carozzo", scope: "Captação & Edição", client: "CAROZZO", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Safety House - Guarajuba (Tour)", kicker: "Tour Imobiliário", ratio: "9:16", thumb: "assets/img/04-luz-dramatica.png", yt: "sGQG_spRoEI", sub: "Tour vertical Safety House em Guarajuba", scope: "Captação & Edição", client: "Safety House", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Casa Praia do Forte/BA - 2C2ML Patrimonial (Doha)", kicker: "Alto Padrão", ratio: "9:16", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "sK83MIvT7Wc", sub: "Imóvel em Praia do Forte/BA com 2C2ML Patrimonial e Doha", scope: "Captação & Edição", client: "2C2ML Patrimonial / Doha", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Casa de 25 Milhões - Praia do Forte-BA", kicker: "Alto Padrão", ratio: "9:16", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "BHCmtooDXSM", sub: "Destaque em vídeo de residência em Praia do Forte-BA", scope: "Captação & Edição", client: "Praia do Forte-BA", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Residencial Link Artemia – ISOTECH INCORP", kicker: "Incorporadora", ratio: "16:9", thumb: "assets/img/04-luz-dramatica.png", yt: "jIGQQCtb1Ew", sub: "Filme do Residencial Link Artemia com Isotech Incorp", scope: "Edição & Finalização", client: "Isotech Incorp", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "Washington Tower Residence - (VT I.A. )", kicker: "VT · IA", ratio: "16:9", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "ivlD9VxAvxw", sub: "VT com recursos de IA para Washington Tower Residence", scope: "Edição & IA", client: "Washington Tower Residence", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "Viva Vista Harmonia (Vt 1)", kicker: "Empreendimento", ratio: "16:9", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "DDLK0_Cm1gQ", sub: "VT 1 do empreendimento Viva Vista Harmonia", scope: "Edição & Finalização", client: "Viva Vista Harmonia", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "Safety House - Guarajuba", kicker: "Imobiliário", ratio: "9:16", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "YRKLusXmWBQ", sub: "Apresentação Safety House em Guarajuba", scope: "Captação & Edição", client: "Safety House", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Boulevard Residence - Reel", kicker: "Imobiliário", ratio: "9:16", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "-h0894Av8Zg", sub: "Apresentação vertical do Boulevard Residence", scope: "Captação & Edição", client: "Boulevard Residence", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Obra VLT - Reel Acompanhamento", kicker: "Obra / Infraestrutura", ratio: "9:16", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "HCKhl9_Ts50", sub: "Registro de acompanhamento da obra do VLT", scope: "Captação & Edição", client: "Obra VLT", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Mingoen - Instalação Parque de Eucalipto Imbuí", kicker: "Obra / Urbanismo", ratio: "9:16", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "dps1xtHFI7w", sub: "Instalação no Parque de Eucalipto, Imbuí", scope: "Captação & Edição", client: "Mingoen", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Mingoen - Praça Pernambués", kicker: "Obra / Urbanismo", ratio: "9:16", thumb: "assets/img/04-luz-dramatica.png", yt: "aBWierlt9ho", sub: "Registro da intervenção na Praça Pernambués", scope: "Captação & Edição", client: "Mingoen", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Mingoen - parques Obra Imbuí", kicker: "Obra / Urbanismo", ratio: "9:16", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "l7QzQUIqm8o", sub: "Acompanhamento de parques e obra no Imbuí", scope: "Captação & Edição", client: "Mingoen", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Mingoen - Visita Obra Imbuí", kicker: "Visita Técnica", ratio: "9:16", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "k3lqnup6iTc", sub: "Visita à obra no Imbuí com a equipe Mingoen", scope: "Captação & Edição", client: "Mingoen", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" }
+        ]
+      },
+      {
+        id: "moda-fashion",
+        title: "Moda & Fashion Films",
+        linkText: "Cotar fashion film →",
+        linkHref: "https://wa.me/5571996068535?text=Ol%C3%A1%20Neri%2C%20quero%20cotar%20Fashion%20Film%20ou%20campanha%20de%20Moda.",
+        items: [
+          { title: "Carbase - GIARDINI COLLEZIONE - FashionFilm", kicker: "Fashion Film · Destaque", ratio: "9:16", thumb: "assets/img/04-luz-dramatica.png", yt: "ElDKU3LEziw", sub: "Fashion film Giardini Collezione para Carbase", scope: "Direção, Edição & Color", client: "Carbase", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Mizuno - MERSAN - VT TV Fashion Film", kicker: "Fashion Film · TV", ratio: "16:9", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "vpzrvvmeC0g", sub: "VT TV Fashion Film Mizuno para Mersan", scope: "Edição, Color & Ritmo", client: "Mersan · Mizuno", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "Umbro - MERSAN - VT TV Fashion Film", kicker: "Fashion Film · TV", ratio: "16:9", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "AfsoqpZCvu8", sub: "VT TV Fashion Film Umbro para Mersan", scope: "Edição, Color & Ritmo", client: "Mersan · Umbro", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "Vizzano - MERSAN - VT TV Fashion Film", kicker: "Fashion Film · TV", ratio: "16:9", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "QGo3HjT2fsE", sub: "VT TV Fashion Film Vizzano para Mersan", scope: "Edição, Color & Ritmo", client: "Mersan · Vizzano", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "Champion - MERSAN - VT TV Fashion Film", kicker: "Fashion Film · TV", ratio: "16:9", thumb: "assets/img/04-luz-dramatica.png", yt: "ASuZy4AqAcw", sub: "VT TV Fashion Film Champion para Mersan", scope: "Edição, Color & Ritmo", client: "Mersan · Champion", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "Model One - AnaPort Praia e Fitness - FashionFilm", kicker: "Fashion Film", ratio: "9:16", thumb: "assets/img/04-luz-dramatica.png", yt: "9uxIvnhXznQ", sub: "Edição Model One para AnaPort Praia e Fitness", scope: "Edição & Color", client: "AnaPort Praia e Fitness", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Zaxy - MERSAN - VT TV Fashion Film", kicker: "Fashion Film · TV", ratio: "16:9", thumb: "assets/img/04-luz-dramatica.png", yt: "PQhRuBwYqHs", sub: "VT TV Fashion Film Zaxy para Mersan", scope: "Edição, Color & Ritmo", client: "Mersan · Zaxy", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "Classe S - MERSAN - VT TV Fashion Film", kicker: "Fashion Film · TV", ratio: "16:9", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "YqFj6BwRfJk", sub: "VT TV Fashion Film Classe S para Mersan", scope: "Edição, Color & Ritmo", client: "Mersan · Classe S", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "Laroche - MERSAN - VT TV Fashion Film", kicker: "Fashion Film · TV", ratio: "16:9", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "WtIEeXmBp2Y", sub: "VT TV Fashion Film Laroche para Mersan", scope: "Edição, Color & Ritmo", client: "Mersan · Laroche", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "Ferracini - MERSAN - VT TV FashionFilm", kicker: "Fashion Film · TV", ratio: "16:9", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "E7i-nqFbBwQ", sub: "VT TV Fashion Film Ferracini para Mersan", scope: "Edição, Color & Ritmo", client: "Mersan · Ferracini", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "Di Valentini - MERSAN - VT TV FashionFilm", kicker: "Fashion Film · TV", ratio: "16:9", thumb: "assets/img/04-luz-dramatica.png", yt: "xdSxe3eDkMU", sub: "VT TV Fashion Film Di Valentini para Mersan", scope: "Edição, Color & Ritmo", client: "Mersan · Di Valentini", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "Green Two - AnaPort Praia e Fitness - FashionFilm", kicker: "Fashion Film", ratio: "9:16", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "R3ixUl02oso", sub: "Fashion film Green Two para AnaPort Praia e Fitness", scope: "Edição & Color", client: "AnaPort Praia e Fitness", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Red - AnaPort Praia e Fitness - FashionFilm", kicker: "Fashion Film", ratio: "9:16", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "wSmyq8kLWbQ", sub: "Edição Red da linha AnaPort Praia e Fitness", scope: "Edição & Color", client: "AnaPort Praia e Fitness", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Black - AnaPort Praia e Fitness - FashionFilm", kicker: "Fashion Film", ratio: "9:16", thumb: "assets/img/04-luz-dramatica.png", yt: "P1KCNkF4sa8", sub: "Edição Black da linha AnaPort Praia e Fitness", scope: "Edição & Color", client: "AnaPort Praia e Fitness", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Pink- AnaPort Praia e Fitness - FashionFilm", kicker: "Fashion Film", ratio: "9:16", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "ZNzO7eHrFCc", sub: "Edição Pink da linha AnaPort Praia e Fitness", scope: "Edição & Color", client: "AnaPort Praia e Fitness", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Orange - AnaPort Praia e Fitness - FashionFilm", kicker: "Fashion Film", ratio: "9:16", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "BHk73OyxvSQ", sub: "Edição Orange da linha AnaPort Praia e Fitness", scope: "Edição & Color", client: "AnaPort Praia e Fitness", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Green - AnaPort Praia e Fitness - FashionFilm", kicker: "Fashion Film", ratio: "9:16", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "APqGi1GdhCk", sub: "Edição Green para AnaPort Praia e Fitness", scope: "Edição & Color", client: "AnaPort Praia e Fitness", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Blue Two - AnaPort Praia e Fitness - FashionFilm", kicker: "Fashion Film", ratio: "9:16", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "i10L0yIpmtY", sub: "Edição Blue Two para AnaPort Praia e Fitness", scope: "Edição & Color", client: "AnaPort Praia e Fitness", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Blue - AnaPort Praia e Fitness - FashionFilm", kicker: "Fashion Film", ratio: "9:16", thumb: "assets/img/04-luz-dramatica.png", yt: "Vu_ZZCqONQ8", sub: "Edição Blue para AnaPort Praia e Fitness", scope: "Edição & Color", client: "AnaPort Praia e Fitness", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" }
+        ]
+      },
+      {
+        id: "comerciais-vt",
+        title: "Comerciais, VTs de TV & Campanhas",
+        linkText: "Cotar comercial / VT →",
+        linkHref: "https://wa.me/5571996068535?text=Ol%C3%A1%20Neri%2C%20quero%20cotar%20Comercial%20ou%20VT%20de%20campanha.",
+        items: [
+          { title: "Natal Solidário GPC (VT 2026)", kicker: "VT 2026 · Destaque", ratio: "16:9", thumb: "assets/img/04-luz-dramatica.png", yt: "mkPb-RE9M2M", sub: "VT 2026 da campanha Natal Solidário GPC", scope: "Edição, Motion & IA", client: "Natal Solidário GPC", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "Dia B Do Brincar (VT I.A. 2026)", kicker: "VT · IA 2026", ratio: "16:9", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "Tzo35tdL5hI", sub: "VT 2026 com IA para o Dia B Do Brincar", scope: "Edição, Motion & IA", client: "Dia B Do Brincar", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "MERSAN 11.11 (VT 2026)", kicker: "VT 2026", ratio: "16:9", thumb: "assets/img/04-luz-dramatica.png", yt: "o8UcYkTo-B8", sub: "VT 2026 da campanha Mersan 11.11", scope: "Edição & Motion", client: "Mersan", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "MERSAN 10.10 (VT 2026)", kicker: "VT 2026", ratio: "16:9", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "OYSrrSs75o0", sub: "VT 2026 da campanha Mersan 10.10", scope: "Edição & Motion", client: "Mersan", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "Atacadão Pinto 10.10 (VT 2026)", kicker: "VT 2026", ratio: "16:9", thumb: "assets/img/04-luz-dramatica.png", yt: "54WZBfaIASI", sub: "VT 2026 da campanha 10.10 para Atacadão Pinto", scope: "Edição & Motion", client: "Atacadão Pinto", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "VT 30s - Black Friday Pipoco - Atacadão Pinto", kicker: "VT 30s", ratio: "16:9", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "6q0uVOqWh0U", sub: "Filme de 30s da Black Friday Pipoco para Atacadão Pinto", scope: "Edição & Motion", client: "Atacadão Pinto", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "GESTÃO TRANSFORMAÇÃO - Prefeitura SONGA 2026 - VT 60s", kicker: "VT 60s", ratio: "16:9", thumb: "assets/img/04-luz-dramatica.png", yt: "QmZ1eQ_FjeQ", sub: "VT de 60s Gestão Transformação · Prefeitura Songa 2026", scope: "Edição, Motion & Finalização", client: "Prefeitura Songa 2026", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "SORTE NA GARAGEM - VT TV", kicker: "VT TV", ratio: "16:9", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "Bznbq72oyqY", sub: "VT para TV da campanha Sorte na Garagem", scope: "Edição & Finalização TV", client: "Sorte na Garagem", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "MERSAN 9.9 (VT 2026)", kicker: "VT 2026", ratio: "16:9", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "svKQUI-rGDs", sub: "VT 2026 da campanha Mersan 9.9", scope: "Edição & Motion", client: "Mersan", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "MERSAN - DIA DA CRIANÇAS (VT 2026)", kicker: "VT 2026", ratio: "16:9", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "Xz4fdqJWMrc", sub: "VT 2026 de Dia das Crianças para Mersan", scope: "Edição & Motion", client: "Mersan", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "Mersan - Primavera Verão (VT 2026)", kicker: "VT 2026", ratio: "16:9", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "7koPDaifgYU", sub: "VT 2026 Primavera Verão para Mersan", scope: "Edição & Color", client: "Mersan", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "DIA P - Atacadão Pinto - VT TV", kicker: "VT TV", ratio: "16:9", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "Vsrp_txKd6k", sub: "VT para TV da campanha Dia P do Atacadão Pinto", scope: "Edição & Motion", client: "Atacadão Pinto", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "Black Friday Pipoco - Atacadão Pinto - VT TV 15s", kicker: "VT 15s", ratio: "16:9", thumb: "assets/img/04-luz-dramatica.png", yt: "fCS-SEuLt2w", sub: "Versão 15s para TV da Black Friday Pipoco · Atacadão Pinto", scope: "Edição & Motion", client: "Atacadão Pinto", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "Atacadão Pinto - Revenda - VT TV", kicker: "VT TV", ratio: "16:9", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "BaMOUf7jUwE", sub: "VT de revenda para TV do Atacadão Pinto", scope: "Edição & Motion", client: "Atacadão Pinto", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "Atacadão Pinto - VT 1 TV 30s", kicker: "VT 30s", ratio: "16:9", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "PLWNU764CHo", sub: "VT 1 de 30s para TV do Atacadão Pinto", scope: "Edição & Motion", client: "Atacadão Pinto", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "Atacadão Pinto - Pedido Antecipado - Storie", kicker: "Comercial", ratio: "9:16", thumb: "assets/img/04-luz-dramatica.png", yt: "2lFYxHeLK3Q", sub: "Chamada para pedido antecipado em formato vertical", scope: "Edição & Motion", client: "Atacadão Pinto", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Colégio Gênesis - Matrículas", kicker: "Campanha", ratio: "16:9", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "h0itm4XTCc4", sub: "Campanha de matrículas para o Colégio Gênesis", scope: "Edição & Motion", client: "Colégio Gênesis", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "Contas Contabilidade - Institucional", kicker: "Institucional", ratio: "16:9", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "F3U-KzARDzE", sub: "Filme institucional para Contas Contabilidade", scope: "Edição & Finalização", client: "Contas Contabilidade", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "Epra Games - Institucional", kicker: "Institucional", ratio: "16:9", thumb: "assets/img/04-luz-dramatica.png", yt: "hUsGIprtMMk", sub: "Filme institucional para Epra Games", scope: "Edição & Motion", client: "Epra Games", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "ThinnerX9 - Publicidade", kicker: "Publicidade", ratio: "16:9", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "5DNgsd0NdDU", sub: "Peça publicitária para ThinnerX9", scope: "Edição & Motion", client: "ThinnerX9", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "TinnerX9 - Institucional", kicker: "Institucional", ratio: "16:9", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "BY2tWiKyWEs", sub: "Vídeo institucional para TinnerX9", scope: "Edição & Finalização", client: "TinnerX9", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "Safety Car - Mercedes", kicker: "Automotivo", ratio: "9:16", thumb: "assets/img/04-luz-dramatica.png", yt: "Ob3t7Gu6S8Y", sub: "Destaque vertical Safety Car Mercedes", scope: "Edição & Ritmo", client: "Safety Car", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Safety Car - Jaguar vs. Mercedes", kicker: "Automotivo", ratio: "9:16", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "p07NkgSE9r8", sub: "Comparativo em vídeo Safety Car: Jaguar vs. Mercedes", scope: "Edição & Ritmo", client: "Safety Car", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Carbase - CyberVolt - After", kicker: "Automotivo", ratio: "9:16", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "LYGwmMUyJ-Y", sub: "After de apresentação CyberVolt na Carbase", scope: "Edição & Ritmo", client: "Carbase", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" }
+        ]
+      },
+      {
+        id: "motion-vfx",
+        title: "Motion Graphics, VFX & Demoreels",
+        linkText: "Página B2B / Pós →",
+        linkHref: "agencias-produtoras/index.html",
+        items: [
+          { title: "Demoreel 2025 MuvStudio - Corp - Shows - Production", kicker: "Demoreel 2025 · Destaque", ratio: "16:9", thumb: "assets/img/04-luz-dramatica.png", yt: "jUb9o0bnirE", sub: "Demoreel 2025 MUV STUDIO: corporativo, shows e produção", scope: "Direção, Edição, Motion & Finalização", client: "MUV STUDIO", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "Atlas Suplementos - VFX Rebranding", kicker: "VFX / Rebranding", ratio: "9:16", thumb: "assets/img/04-luz-dramatica.png", yt: "ItA1bp0yrBU", sub: "Composição visual e efeitos para rebranding", scope: "VFX, Motion & Edição", client: "Atlas Suplementos", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Natal Solidário GPC - 2025 - Motion", kicker: "Motion Graphics", ratio: "9:16", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "uF0wqMbB0PE", sub: "Animação em motion para o Natal Solidário GPC 2025", scope: "Motion Graphics & Edição", client: "Natal Solidário GPC", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Demoreel 2024 MuvStudio", kicker: "Demoreel 2024", ratio: "16:9", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "m0OHFvZ-LsY", sub: "Demoreel 2024 com recortes de edição, motion e pós", scope: "Edição, Motion & Pós-Produção", client: "MUV STUDIO", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "MRV Sensia - Plataforma Gamificada - Motion", kicker: "Motion / Gamificação", ratio: "16:9", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "fIimDoYHBHk", sub: "Motion para plataforma gamificada MRV Sensia", scope: "Motion Graphics & Edição", client: "MRV Sensia", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "MRV Mais - App e Plataforma Gamificada - Motion", kicker: "Motion / App", ratio: "16:9", thumb: "assets/img/04-luz-dramatica.png", yt: "1JuHFNa5vnA", sub: "Motion para app e plataforma gamificada MRV Mais", scope: "Motion Graphics & Edição", client: "MRV Mais", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "MRV Start - Plataforma Gamificada - PROCONPH", kicker: "Motion / Gamificação", ratio: "16:9", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "uiyWzySgDNw", sub: "Motion para plataforma gamificada MRV Start · Proconph", scope: "Motion Graphics & Edição", client: "MRV Start · Proconph", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "Atlas Suplementos - Rebranding New Logo", kicker: "Rebranding", ratio: "9:16", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "JwIF38m6Bk8", sub: "Revelação da nova identidade visual da marca", scope: "Motion & Edição", client: "Atlas Suplementos", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Atlas Suplementos - BlackFriday 2025", kicker: "Motion / Campanha", ratio: "9:16", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "8JF_cNmP9HQ", sub: "Peça promocional para Black Friday 2025", scope: "Edição & Motion", client: "Atlas Suplementos", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Atlas Suplementos - Storie Rebranding", kicker: "Motion / Stories", ratio: "9:16", thumb: "assets/img/04-luz-dramatica.png", yt: "SouJNgU1MIE", sub: "Conteúdo vertical para stories do rebranding", scope: "Edição & Motion", client: "Atlas Suplementos", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "La Gulla Pizzaria - Motion Led - Fatias", kicker: "Motion LED", ratio: "16:9", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "qBEM4_ic_YA", sub: "Peça em motion para painel de LED Fatias · La Gulla Pizzaria", scope: "Motion Graphics para LED", client: "La Gulla Pizzaria", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "La Gulla Pizzaria - Motion Led - Big Olhos", kicker: "Motion LED", ratio: "16:9", thumb: "assets/img/04-luz-dramatica.png", yt: "qEdaus1JanA", sub: "Peça em motion para LED Big Olhos · La Gulla Pizzaria", scope: "Motion Graphics para LED", client: "La Gulla Pizzaria", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "La Gulla PIzzaria - Motion Led - Mais Intenso", kicker: "Motion LED", ratio: "16:9", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "-Zq1XzVfBRM", sub: "Peça em motion para LED Mais Intenso · La Gulla Pizzaria", scope: "Motion Graphics para LED", client: "La Gulla Pizzaria", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "La Gulla Pizzaria - Motion Led - Novidade", kicker: "Motion LED", ratio: "16:9", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "gZIbhwaNUbM", sub: "Peça em motion para LED Novidade · La Gulla Pizzaria", scope: "Motion Graphics para LED", client: "La Gulla Pizzaria", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" }
+        ]
+      },
+      {
+        id: "reels-criadores",
+        title: "Reels, Criadores & Bastidores",
+        linkText: "Cotar Reels →",
+        linkHref: "https://wa.me/5571996068535?text=Ol%C3%A1%20Neri%2C%20quero%20cotar%20edi%C3%A7%C3%A3o%20de%20Reels%20e%20conte%C3%BAdo%20vertical.",
+        items: [
+          { title: "Avata 2 - Rafful e Dan", kicker: "Drone / Criadores · Destaque", ratio: "9:16", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "1qA3Qx2HsIs", sub: "Registro com Avata 2 por Rafful e Dan", scope: "Edição & Ritmo", client: "Rafful e Dan", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Tour das Ilhas - Barra Grande", kicker: "Viagem / Tour", ratio: "9:16", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "jUZNn0jLRws", sub: "Roteiro visual do Tour das Ilhas em Barra Grande", scope: "Captação & Edição", client: "Tour das Ilhas · Barra Grande", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Grecia Tattoo - Parte 1", kicker: "Tattoo / Parte 1", ratio: "9:16", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "-N53tKNAbFo", sub: "Parte 1 do conteúdo com Grecia Tattoo", scope: "Edição & Ritmo", client: "Grecia Tattoo", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "EVO - Reels", kicker: "Reels", ratio: "9:16", thumb: "assets/img/04-luz-dramatica.png", yt: "EkC_EKbaVWI", sub: "Reel vertical para EVO", scope: "Edição & Motion", client: "EVO", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Doha Content #1", kicker: "Conteúdo / Marca", ratio: "9:16", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "zkGIyl6lh38", sub: "Primeiro episódio da série Doha Content", scope: "Captação & Edição", client: "Doha", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Clínica Raianny Lima - Laser MakingOf", kicker: "Making Of", ratio: "9:16", thumb: "assets/img/04-luz-dramatica.png", yt: "rsAm7-IkyIo", sub: "Bastidores da aplicação de tecnologia a laser", scope: "Captação & Edição", client: "Clínica Raianny Lima", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" }
+        ]
+      },
+      {
+        id: "doc-reality",
+        title: "Documentário, TV & Reality Show",
+        linkText: "Cotar long-form →",
+        linkHref: "https://wa.me/5571996068535?text=Ol%C3%A1%20Neri%2C%20quero%20conversar%20sobre%20Document%C3%A1rio%2C%20TV%20ou%20Reality.",
+        items: [
+          { title: "SABORITTA - MiniDoc", kicker: "MiniDoc · Destaque", ratio: "16:9", thumb: "assets/img/04-luz-dramatica.png", yt: "lO40VolH1Ck", sub: "Mini-documentário Saboritta", scope: "Montagem Narrativa & Finalização", client: "Saboritta", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "Ep1 - Colégio Gênesis - Documentário", kicker: "Documentário · Ep. 1", ratio: "16:9", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "2lTgHOTmGOI", sub: "Episódio 1 da série documental Colégio Gênesis", scope: "Montagem Narrativa & Finalização", client: "Colégio Gênesis", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "Ep2 - Colégio Gênesis - Documentário", kicker: "Documentário · Ep. 2", ratio: "16:9", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "_Qf7FxDOplw", sub: "Episódio 2 da série documental Colégio Gênesis", scope: "Montagem Narrativa & Finalização", client: "Colégio Gênesis", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "Ep3 - Colégio Gênesis - Documentário", kicker: "Documentário · Ep. 3", ratio: "16:9", thumb: "assets/img/04-luz-dramatica.png", yt: "R9ni2vcGt-A", sub: "Episódio 3 da série documental Colégio Gênesis", scope: "Montagem Narrativa & Finalização", client: "Colégio Gênesis", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "Ep4 - Colégio Gênesis - Documentário", kicker: "Documentário · Ep. 4", ratio: "16:9", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "Yqt7-2BUPsc", sub: "Episódio 4 da série documental Colégio Gênesis", scope: "Montagem Narrativa & Finalização", client: "Colégio Gênesis", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "Ep5 - Colégio Gênesis - Documentário", kicker: "Documentário · Ep. 5", ratio: "16:9", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "HVrjnIPMIEI", sub: "Episódio 5 da série documental Colégio Gênesis", scope: "Montagem Narrativa & Finalização", client: "Colégio Gênesis", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" }
+        ]
+      },
+      {
+        id: "podcast",
+        title: "Podcast & Cortes",
+        linkText: "Cotar podcast →",
+        linkHref: "https://wa.me/5571996068535?text=Ol%C3%A1%20Neri%2C%20quero%20cotar%20edi%C3%A7%C3%A3o%20de%20Podcast.",
+        items: [
+          { title: "Episódio Completo Multicam", kicker: "Podcast", ratio: "16:9", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "lO40VolH1Ck", sub: "Corte entre câmeras e tratamento de áudio", scope: "Multicam, Edição & Áudio", client: "Canal / Podcast", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" }
+        ]
+      },
+      {
+        id: "anormale",
+        title: "Anormale Company · Videoclipes & Autorais",
+        linkText: "Falar sobre clipe →",
+        linkHref: "https://wa.me/5571996068535?text=Ol%C3%A1%20Neri%2C%20quero%20falar%20sobre%20um%20videoclipe%20com%20a%20Anormale%20Company.",
+        items: [
+          { title: "Videoclipe Oficial · Anormale", kicker: "Anormale Company", ratio: "16:9", thumb: "assets/img/04-luz-dramatica.png", yt: "jUb9o0bnirE", sub: "Direção criativa, estética e ritmo musical", scope: "Direção, Edição & Color", client: "Artista / Música", origin: "Anormale Company", format: "16:9 · Cinema", niche: "agencias-produtoras/index.html" }
+        ]
+      }
+    ];
+
+    const track = document.getElementById('c-track');
+    const dots = document.querySelectorAll('.carousel-dot');
+    const totalSlides = dots.length;
+    let slideIdx = 0;
+
+    function moveCarousel(idx) {
+      slideIdx = (idx + totalSlides) % totalSlides;
+      track.style.transform = `translateX(-${slideIdx * 100}%)`;
+      dots.forEach((d, i) => d.classList.toggle('active', i === slideIdx));
+    }
+
+    document.getElementById('c-prev').addEventListener('click', () => moveCarousel(slideIdx - 1));
+    document.getElementById('c-next').addEventListener('click', () => moveCarousel(slideIdx + 1));
+    dots.forEach(d => d.addEventListener('click', () => moveCarousel(Number(d.dataset.idx))));
+
+    function ativarHoverScroll(railTrack) {
+      let velocidade = 0;
+      let animando = false;
+
+      function loop() {
+        if (velocidade === 0) {
+          animando = false;
+          return;
+        }
+        railTrack.scrollLeft += velocidade;
+        requestAnimationFrame(loop);
+      }
+
+      railTrack.addEventListener('mousemove', (e) => {
+        if (e.pointerType === 'touch' || railTrack.classList.contains('is-grid')) return;
+
+        const rect = railTrack.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const zona = rect.width * 0.16;
+
+        if (x < zona) {
+          const intensidade = 1 - (x / zona);
+          velocidade = -Math.ceil(intensidade * 10);
+        } else if (x > rect.width - zona) {
+          const intensidade = (x - (rect.width - zona)) / zona;
+          velocidade = Math.ceil(intensidade * 10);
+        } else {
+          velocidade = 0;
+        }
+
+        if (velocidade !== 0 && !animando) {
+          animando = true;
+          requestAnimationFrame(loop);
+        }
+      });
+
+      railTrack.addEventListener('mouseleave', () => {
+        velocidade = 0;
+      });
+    }
+
+    function initHoverScrollTrilhos() {
+      document.querySelectorAll('.rail-track:not(.is-grid)').forEach((rTrack) => {
+        if (rTrack.dataset.hoverScrollReady) return;
+        rTrack.dataset.hoverScrollReady = '1';
+        ativarHoverScroll(rTrack);
+      });
+    }
+
+    const railsRoot = document.getElementById('rails-root');
+
+    function renderRails(filter = 'all') {
+      const isCategoryGrid = filter !== 'all';
+      const list = isCategoryGrid ? rails.filter(r => r.id === filter) : rails;
+
+      railsRoot.innerHTML = list.map((rail) => `
+        <div class="rail" id="rail-${rail.id}">
+          <div class="rail-head">
+            <h2 class="rail-title">${rail.title}<span class="rail-count">(${rail.items.length})</span></h2>
+            <div class="rail-right">
+              <a class="rail-link" href="${rail.linkHref}" ${rail.linkHref.startsWith('http') ? 'target="_blank" rel="noopener"' : ''}>${rail.linkText}</a>
+              ${!isCategoryGrid ? `
+                <div class="rail-nav-btns">
+                  <button class="rail-btn" type="button" aria-label="Rolar esquerda" onclick="scrollRail('${rail.id}', -1)">‹</button>
+                  <button class="rail-btn" type="button" aria-label="Rolar direita" onclick="scrollRail('${rail.id}', 1)">›</button>
+                </div>
+              ` : `
+                <button class="pill" type="button" onclick="setFilter('all')">← Ver todos os trilhos</button>
+              `}
+            </div>
+          </div>
+
+          <div class="rail-track ${isCategoryGrid ? 'is-grid' : ''}" id="track-${rail.id}">
+            ${rail.items.map((item, idx) => `
+              <article class="card" data-ratio="${item.ratio}" onclick="openProject('${rail.id}', ${idx})">
+                <div class="card-media">
+                  <div class="card-muv"><img src="assets/img/Muv_Studio_Logo-10.png" alt="MUV"></div>
+                  <img class="card-thumb" src="${ytThumb(item.yt)}" alt="${item.title}" loading="lazy" onerror="this.onerror=null;this.src='${item.thumb}';">
+                  <div class="card-overlay">
+                    <span class="card-kicker">${item.kicker}</span>
+                    <h3 class="card-title">${item.title}</h3>
+                  </div>
+                </div>
+              </article>
+            `).join('')}
+          </div>
+        </div>
+      `).join('');
+
+      if (!isCategoryGrid) {
+        initHoverScrollTrilhos();
+      }
+    }
+
+    function scrollRail(railId, dir) {
+      const rTrack = document.getElementById(`track-${railId}`);
+      if (!rTrack) return;
+      const step = Math.max(260, rTrack.clientWidth * 0.72);
+      rTrack.scrollBy({ left: dir * step, behavior: 'smooth' });
+    }
+
+    renderRails();
+
+    function setFilter(filterValue) {
+      document.querySelectorAll('.pill').forEach(p => {
+        p.classList.toggle('active', p.dataset.filter === filterValue);
+      });
+      renderRails(filterValue);
+    }
+
+    document.querySelectorAll('.pill').forEach(pill => {
+      if (!pill.dataset.filter) return;
+      pill.addEventListener('click', () => setFilter(pill.dataset.filter));
+    });
+
+    const btnPoster = document.getElementById('mode-poster');
+    const btnWide = document.getElementById('mode-wide');
+    btnPoster.addEventListener('click', () => {
+      document.body.classList.remove('mode-wide');
+      btnPoster.classList.add('active');
+      btnWide.classList.remove('active');
+    });
+    btnWide.addEventListener('click', () => {
+      document.body.classList.add('mode-wide');
+      btnWide.classList.add('active');
+      btnPoster.classList.remove('active');
+    });
+
+    const modal = document.getElementById('modal');
+    const modalBox = document.getElementById('modal-box');
+    const iframe = document.getElementById('m-iframe');
+    const creditsPanel = document.getElementById('credits-panel');
+    const btnInfo = document.getElementById('btn-info');
+
+    function openProject(railId, idx) {
+      const rail = rails.find(r => r.id === railId);
+      if (!rail) return;
+      const item = rail.items[idx];
+
+      document.getElementById('m-rail').textContent = rail.title;
+      document.getElementById('m-title').textContent = item.title;
+      document.getElementById('m-sub').textContent = item.sub;
+
+      document.getElementById('c-scope').textContent = item.scope;
+      document.getElementById('c-client').textContent = item.client;
+      document.getElementById('c-origin').textContent = item.origin;
+      document.getElementById('c-format').textContent = item.format;
+
+      document.getElementById('m-niche').href = item.niche;
+      document.getElementById('m-wa').href =
+        `https://wa.me/5571996068535?text=${encodeURIComponent('Olá Neri, vi "' + item.title + '" no catálogo da MUV STUDIO e quero conversar sobre um projeto semelhante.')}`;
+
+      modalBox.classList.toggle('is-vertical', item.ratio === '9:16');
+
+      creditsPanel.classList.remove('open');
+      btnInfo.classList.remove('active');
+      btnInfo.setAttribute('aria-expanded', 'false');
+
+      iframe.src = `https://www.youtube.com/embed/${item.yt}?autoplay=1&rel=0`;
+      modal.classList.add('open');
+    }
+
+    function closeModal() {
+      modal.classList.remove('open');
+      iframe.src = '';
+    }
+
+    btnInfo.addEventListener('click', () => {
+      const open = creditsPanel.classList.toggle('open');
+      btnInfo.classList.toggle('active', open);
+      btnInfo.setAttribute('aria-expanded', String(open));
+    });
+
+    document.getElementById('btn-close').addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
+  </script>
+
+</body>
+</html>
