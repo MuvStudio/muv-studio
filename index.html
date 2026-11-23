@@ -220,7 +220,6 @@
       padding: 0 0 56px;
       background: #060807;
     }
-    /* CAPA SOBREPOSTA COM BAIXA OPACIDADE ANTES DE ROLAR; SOME 100% QUANDO O VÍDEO ESTÁ ROLANDO */
     .hero-card-bg {
       position: absolute;
       inset: 0;
@@ -483,24 +482,6 @@
     .card:hover .card-media img.card-thumb {
       transform: scale(1.04);
       filter: brightness(1.06);
-    }
-
-    /* AJUSTE PARA CAPAS DE SHORTS (9:16) — REMOVE BARRAS PRETAS LATERAIS SEM CORTAR A ARTE */
-    .card.is-short-thumb .card-media img.card-thumb {
-      transform: scale(1.82);
-      object-position: center center;
-    }
-    .card.is-short-thumb:hover .card-media img.card-thumb {
-      transform: scale(1.87);
-    }
-
-    /* AJUSTE DE FOCO PARA VIDEOCLIPES, REALITY SHOW E PODCAST (MIRANDO EM ROSTO / TÍTULO) */
-    .card.focus-subject .card-media img.card-thumb {
-      object-position: center 22%;
-      transform: scale(1.16);
-    }
-    .card.focus-subject:hover .card-media img.card-thumb {
-      transform: scale(1.20);
     }
 
     .card-media::after {
@@ -820,6 +801,7 @@
         padding: 2px 0 6px;
       }
       .rail-track.is-grid {
+        grid-auto-columns: unset;
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 8px;
       }
@@ -1425,11 +1407,7 @@
   </div>
 
   <script>
-    const THUMB_VERSION = '20261123';
-    const ytThumb = (id, ratio = '16:9') =>
-      ratio === '9:16'
-        ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg?v=${THUMB_VERSION}`
-        : `https://i.ytimg.com/vi/${id}/maxresdefault.jpg?v=${THUMB_VERSION}`;
+    const ytThumb = (id) => `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
 
     const rails = [
       {
@@ -1737,7 +1715,7 @@
 
     let activeSlideIdx = 0;
 
-    function registerHeroIframeHandshake(iframeEl, slideEl) {
+    function registerHeroIframeHandshake(iframeEl) {
       const sendSubscribe = () => {
         if (!iframeEl.contentWindow) return;
         iframeEl.contentWindow.postMessage(JSON.stringify({ event: 'listening' }), '*');
@@ -1782,13 +1760,12 @@
       Object.entries(heroVideoConfigs).forEach(([key, cfg]) => {
         const wrap = document.querySelector(`[data-hero-video="${key}"]`);
         if (!wrap) return;
-        const slideEl = wrap.closest('.hero-card');
 
         if (cfg.slideIdx === currentIdx) {
           if (!wrap.querySelector('iframe')) {
             wrap.innerHTML = `<iframe id="hero-iframe-${key}" src="${cfg.src}" title="${cfg.title}" allow="autoplay; encrypted-media"></iframe>`;
             const ifr = wrap.querySelector('iframe');
-            registerHeroIframeHandshake(ifr, slideEl);
+            registerHeroIframeHandshake(ifr);
           }
           heroMuteState[key] = true;
           updateMuteIcons(key, true);
@@ -1935,22 +1912,12 @@
     let currentFilter = 'all';
     let currentQuery = '';
 
-    const subjectFocusedRails = new Set(['anormale', 'reality-show', 'podcast']);
-
     function cardMarkup(railId, item, idx) {
-      const isShort = item.ratio === '9:16';
-      const isSubjectFocused = subjectFocusedRails.has(railId) && !isShort;
-      const classes = [
-        'card',
-        isShort ? 'is-short-thumb' : '',
-        isSubjectFocused ? 'focus-subject' : ''
-      ].filter(Boolean).join(' ');
-
       return `
-        <article class="${classes}" data-ratio="${item.ratio}" onclick="openProject('${railId}', ${idx})">
+        <article class="card" data-ratio="${item.ratio}" onclick="openProject('${railId}', ${idx})">
           <div class="card-media">
             <div class="card-muv"><img src="assets/img/Muv_Studio_Logo-10.png" alt="MUV"></div>
-            <img class="card-thumb" src="${ytThumb(item.yt, item.ratio)}" alt="${item.title}" loading="lazy" onload="if(this.naturalWidth===120){this.src='https://i.ytimg.com/vi/${item.yt}/hqdefault.jpg?v=${THUMB_VERSION}';}" onerror="this.onerror=null;this.src='${item.thumb}';">
+            <img class="card-thumb" src="${ytThumb(item.yt)}" alt="${item.title}" loading="lazy" onload="if(this.naturalWidth===120){this.src='https://img.youtube.com/vi/${item.yt}/hqdefault.jpg';}" onerror="this.onerror=null;this.src='${item.thumb}';">
             <div class="card-overlay">
               <span class="card-kicker">${item.kicker}</span>
               <h3 class="card-title">${item.title}</h3>
@@ -2167,7 +2134,7 @@
         <article class="rel-card" onclick="openProject('${rec.railId}', ${rec.idx})">
           <div class="rel-thumb">
             <span class="rel-tag">${rec.tag}</span>
-            <img src="${ytThumb(rec.item.yt, rec.item.ratio)}" alt="${rec.item.title}" loading="lazy" onload="if(this.naturalWidth===120){this.src='https://i.ytimg.com/vi/${rec.item.yt}/hqdefault.jpg?v=${THUMB_VERSION}';}" onerror="this.onerror=null;this.src='${rec.item.thumb}';">
+            <img src="${ytThumb(rec.item.yt)}" alt="${rec.item.title}" loading="lazy" onload="if(this.naturalWidth===120){this.src='https://img.youtube.com/vi/${rec.item.yt}/hqdefault.jpg';}" onerror="this.onerror=null;this.src='${rec.item.thumb}';">
           </div>
           <div class="rel-body">
             <strong>${rec.item.title}</strong>
