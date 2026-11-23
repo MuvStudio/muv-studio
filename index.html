@@ -220,17 +220,24 @@
       padding: 0 0 56px;
       background: #060807;
     }
+    /* CAPA SOBREPOSTA COM BAIXA OPACIDADE ANTES DE ROLAR; SOME 100% QUANDO O VÍDEO ESTÁ ROLANDO */
     .hero-card-bg {
       position: absolute;
       inset: 0;
-      z-index: 0;
+      z-index: 2;
       overflow: hidden;
+      pointer-events: none;
+      transition: opacity 0.45s ease;
     }
     .hero-card-bg img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0.62;
+      opacity: 0.48;
+      transition: opacity 0.45s ease;
+    }
+    .hero-card.is-playing .hero-card-bg {
+      opacity: 0;
     }
     .hero-video-wrap {
       position: absolute;
@@ -238,6 +245,7 @@
       z-index: 1;
       pointer-events: none;
       overflow: hidden;
+      background: #000;
     }
     .hero-video-wrap iframe {
       position: absolute;
@@ -248,21 +256,21 @@
       min-width: 205vh;
       transform: translate(-50%, -50%);
       border: 0;
-      opacity: 0.85;
+      opacity: 1;
     }
     .hero-card::after {
       content: "";
       position: absolute;
       inset: 0;
-      z-index: 2;
+      z-index: 3;
       pointer-events: none;
       background:
-        linear-gradient(90deg, rgba(6, 8, 7, 0.92) 0%, rgba(6, 8, 7, 0.56) 44%, rgba(6, 8, 7, 0.12) 100%),
-        linear-gradient(0deg, #060807 0%, rgba(6, 8, 7, 0.55) 26%, transparent 62%);
+        linear-gradient(90deg, rgba(6, 8, 7, 0.90) 0%, rgba(6, 8, 7, 0.48) 42%, rgba(6, 8, 7, 0.04) 100%),
+        linear-gradient(0deg, #060807 0%, rgba(6, 8, 7, 0.48) 24%, transparent 58%);
     }
     .hero-inner {
       position: relative;
-      z-index: 3;
+      z-index: 4;
       width: min(var(--max), calc(100% - 64px));
       margin: 0 auto;
       display: flex;
@@ -476,6 +484,25 @@
       transform: scale(1.04);
       filter: brightness(1.06);
     }
+
+    /* AJUSTE PARA CAPAS DE SHORTS (9:16) — REMOVE BARRAS PRETAS LATERAIS SEM CORTAR A ARTE */
+    .card.is-short-thumb .card-media img.card-thumb {
+      transform: scale(1.82);
+      object-position: center center;
+    }
+    .card.is-short-thumb:hover .card-media img.card-thumb {
+      transform: scale(1.87);
+    }
+
+    /* AJUSTE DE FOCO PARA VIDEOCLIPES, REALITY SHOW E PODCAST (MIRANDO EM ROSTO / TÍTULO) */
+    .card.focus-subject .card-media img.card-thumb {
+      object-position: center 22%;
+      transform: scale(1.16);
+    }
+    .card.focus-subject:hover .card-media img.card-thumb {
+      transform: scale(1.20);
+    }
+
     .card-media::after {
       content: "";
       position: absolute; inset: 0;
@@ -589,26 +616,10 @@
       font-size: 0.76rem;
     }
 
-    /* BARRA INFERIOR MOBILE */
-    .mobile-dock { display: none; }
+    /* BARRA INFERIOR MOBILE — STRICTLY HIDDEN ON DESKTOP */
+    .mobile-dock,
     .mobile-search-sheet {
-      position: fixed; left: 0; right: 0; bottom: 58px; z-index: 75;
-      background: rgba(10, 14, 12, 0.98);
-      border-top: 1px solid var(--border-lime);
-      padding: 12px 16px;
-      transform: translateY(120%);
-      transition: transform 0.25s ease;
-    }
-    .mobile-search-sheet.open { transform: translateY(0); }
-    .mobile-search-box {
-      display: flex; align-items: center; gap: 10px;
-      background: rgba(255, 255, 255, 0.07);
-      border: 1px solid var(--border-strong);
-      border-radius: 10px;
-      padding: 9px 12px;
-    }
-    .mobile-search-box input {
-      width: 100%; font-size: 0.9rem; outline: none; color: var(--text);
+      display: none !important;
     }
 
     /* MODAL PLAYER COMPACTO COM ESPIADA ("PEEK") NOS RECOMENDADOS */
@@ -823,13 +834,34 @@
       .bts-grid, .hub-grid { grid-template-columns: 1fr; gap: 18px; }
       .hub { padding: 40px 0; }
 
+      .mobile-search-sheet {
+        display: block !important;
+        position: fixed; left: 0; right: 0; bottom: 58px; z-index: 75;
+        background: rgba(10, 14, 12, 0.98);
+        border-top: 1px solid var(--border-lime);
+        padding: 12px 16px;
+        transform: translateY(120%);
+        transition: transform 0.25s ease;
+      }
+      .mobile-search-sheet.open { transform: translateY(0); }
+      .mobile-search-box {
+        display: flex; align-items: center; gap: 10px;
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid var(--border-strong);
+        border-radius: 10px;
+        padding: 9px 12px;
+      }
+      .mobile-search-box input {
+        width: 100%; font-size: 0.9rem; outline: none; color: var(--text);
+      }
+
       .mobile-dock {
         position: fixed; left: 0; right: 0; bottom: 0; z-index: 78;
         height: 58px;
         background: rgba(6, 8, 7, 0.96);
         backdrop-filter: blur(16px);
         border-top: 1px solid rgba(255, 255, 255, 0.09);
-        display: grid;
+        display: grid !important;
         grid-template-columns: repeat(4, 1fr);
         align-items: center;
       }
@@ -922,7 +954,7 @@
         <div class="carousel-track" id="c-track">
 
           <!-- SLIDE 1: SHOWREEL 2025 -->
-          <article class="hero-card">
+          <article class="hero-card" data-slide-index="0">
             <div class="hero-card-bg">
               <img src="https://img.youtube.com/vi/jUb9o0bnirE/maxresdefault.jpg" alt="Showreel MUV STUDIO">
             </div>
@@ -957,7 +989,7 @@
           </article>
 
           <!-- SLIDE 2: BASTIDORES -->
-          <article class="hero-card">
+          <article class="hero-card" data-slide-index="1">
             <div class="hero-card-bg">
               <img src="assets/img/wallpaper7-camadas.jpg" alt="Bastidores de edição e motion">
             </div>
@@ -985,7 +1017,7 @@
           </article>
 
           <!-- SLIDE 3: OBRA EM DESTAQUE -->
-          <article class="hero-card">
+          <article class="hero-card" data-slide-index="2">
             <div class="hero-card-bg">
               <img src="assets/img/wallpaper5-vidro.jpg" alt="Produções finalizadas MUV STUDIO">
             </div>
@@ -1013,7 +1045,7 @@
           </article>
 
           <!-- SLIDE 4: DEMOREEL 2024 -->
-          <article class="hero-card">
+          <article class="hero-card" data-slide-index="3">
             <div class="hero-card-bg">
               <img src="https://img.youtube.com/vi/m0OHFvZ-LsY/maxresdefault.jpg" alt="Demoreel 2024 MUV STUDIO">
             </div>
@@ -1032,7 +1064,7 @@
                 </div>
                 <p class="hero-desc">Compilado com cortes, animações e finalizações que construíram a base técnica do estúdio.</p>
                 <div class="hero-actions">
-                  <button class="btn" type="button" onclick="openProject('motion-vfx', 3)">
+                  <button class="btn" type="button" onclick="openProject('motion-vfx', 2)">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
                     <span>Assistir Demoreel 2024</span>
                   </button>
@@ -1048,7 +1080,7 @@
           </article>
 
           <!-- SLIDE 5: REALITY SHOW — MAGNATA IMOBILIÁRIO (TEASER 3 -> TEASER 4 EM SEQUÊNCIA) -->
-          <article class="hero-card">
+          <article class="hero-card" data-slide-index="4">
             <div class="hero-card-bg">
               <img src="https://img.youtube.com/vi/TkUP6LtY4EA/maxresdefault.jpg" alt="Magnata Imobiliário Teasers">
             </div>
@@ -1094,7 +1126,7 @@
       </div>
     </section>
 
-    <!-- BARRA DE FILTROS RÁPIDOS (NA NOVA ORDEM DOS TRILHOS) -->
+    <!-- BARRA DE FILTROS RÁPIDOS -->
     <div class="filter-bar" id="catalogo">
       <div class="wrap">
         <div class="pills" role="tablist" aria-label="Filtrar por nicho">
@@ -1304,7 +1336,7 @@
     </div>
   </footer>
 
-  <!-- BUSCA MOBILE + DOCK INFERIOR -->
+  <!-- BUSCA MOBILE + DOCK INFERIOR (SOMENTE MOBILE <= 820PX) -->
   <div class="mobile-search-sheet" id="mobile-search-sheet">
     <div class="mobile-search-box">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -1393,9 +1425,12 @@
   </div>
 
   <script>
-    const ytThumb = (id) => `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
+    const THUMB_VERSION = '20261123';
+    const ytThumb = (id, ratio = '16:9') =>
+      ratio === '9:16'
+        ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg?v=${THUMB_VERSION}`
+        : `https://i.ytimg.com/vi/${id}/maxresdefault.jpg?v=${THUMB_VERSION}`;
 
-    /* ORDEM RECOMENDADA DOS 12 TRILHOS (REALITY SHOW E DOCUMENTÁRIOS SEPARADOS) */
     const rails = [
       {
         id: "aftermovies",
@@ -1407,15 +1442,12 @@
           { title: "Camarote Brahma - Larissa Fagundes - Carnaval 2025 (Dia1)", kicker: "Carnaval · Destaque", ratio: "9:16", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "DuTfSPMXfLQ", sub: "Dia 1 no Camarote Brahma com Larissa Fagundes · Carnaval 2025", scope: "Captação & Edição", client: "Camarote Brahma · Larissa Fagundes", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
           { title: "Claudia Leite - Cidade Jardim festival", kicker: "Festival / Show", ratio: "9:16", thumb: "assets/img/04-luz-dramatica.png", yt: "Yp3sM0m38w0", sub: "Claudia Leitte no Cidade Jardim Festival", scope: "Captação & Edição", client: "Cidade Jardim Festival", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
           { title: "Mansão Green - Aftermovie", kicker: "Aftermovie", ratio: "9:16", thumb: "assets/img/04-luz-dramatica.png", yt: "oT7tMml2Vxw", sub: "Aftermovie vertical da Mansão Green", scope: "Captação, Edição & Ritmo", client: "Mansão Green", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
-          { title: "Motion v3 - Camarote Planeta Band - Carnaval 2026", kicker: "Carnaval", ratio: "9:16", thumb: "assets/img/04-luz-dramatica.png", yt: "gmi8gAbvDqQ", sub: "Peça Carnaval 2026 · Camarote Planeta Band", scope: "Motion & Edição", client: "Camarote Planeta Band", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
           { title: "Feijoada Noite e Dia - Aftermovie", kicker: "Aftermovie", ratio: "9:16", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "h_DGhcwN1Is", sub: "Aftermovie da Feijoada Noite e Dia", scope: "Captação & Edição", client: "Feijoada Noite e Dia", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
           { title: "Aftermovie - Boate Primeira Saída - Pituba/Salvador/BA", kicker: "Aftermovie", ratio: "9:16", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "4rMSOi5IrgE", sub: "Aftermovie na Boate Primeira Saída, Pituba/Salvador/BA", scope: "Captação & Edição", client: "Boate Primeira Saída", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
           { title: "DJ KEKO - Calourada Med - Aftermovie", kicker: "Aftermovie", ratio: "9:16", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "WarI6oqNLr8", sub: "Aftermovie de DJ KEKO na Calourada Med", scope: "Captação & Edição", client: "Calourada Med · DJ KEKO", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
           { title: "JUD Salvador - DJ KEKO", kicker: "Show / DJ", ratio: "9:16", thumb: "assets/img/04-luz-dramatica.png", yt: "FgBWu1WMQEw", sub: "DJ KEKO no JUD Salvador", scope: "Captação & Edição", client: "JUD Salvador · DJ KEKO", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
           { title: "Panaceia - InterMed Salvador - DJ KEKO", kicker: "Festa / DJ", ratio: "9:16", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "p5XFolRvTZw", sub: "DJ KEKO na Panaceia · InterMed Salvador", scope: "Captação & Edição", client: "Panaceia · InterMed Salvador", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
-          { title: "Vaquejada - Partiu Songa 2025", kicker: "Evento / Festa", ratio: "9:16", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "uWVOvEFUS8Q", sub: "Registro da vaquejada Partiu Songa 2025", scope: "Captação & Edição", client: "Partiu Songa 2025", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
-          { title: "Motion v2 - Camarote Planeta Band - Carnaval 2026", kicker: "Carnaval", ratio: "16:9", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "ewxnHz8lu14", sub: "Peça Carnaval 2026 v2 · Camarote Planeta Band", scope: "Motion Graphics", client: "Camarote Planeta Band", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
-          { title: "Motion v1 - Camarote Planeta Band - Carnaval 2026", kicker: "Carnaval", ratio: "16:9", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "Sqd_ibl0_rQ", sub: "Peça Carnaval 2026 v1 · Camarote Planeta Band", scope: "Motion Graphics", client: "Camarote Planeta Band", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" }
+          { title: "Vaquejada - Partiu Songa 2025", kicker: "Evento / Festa", ratio: "9:16", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "uWVOvEFUS8Q", sub: "Registro da vaquejada Partiu Songa 2025", scope: "Captação & Edição", client: "Partiu Songa 2025", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" }
         ]
       },
       {
@@ -1459,15 +1491,13 @@
         linkHref: "agencias-produtoras/index.html",
         items: [
           { title: "Demoreel 2025 MuvStudio - Corp - Shows - Production", kicker: "Demoreel 2025 · Destaque", ratio: "16:9", thumb: "assets/img/04-luz-dramatica.png", yt: "jUb9o0bnirE", sub: "Demoreel 2025 MUV STUDIO: corporativo, shows e produção", scope: "Direção, Edição, Motion & Finalização", client: "MUV STUDIO", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
-          { title: "Atlas Suplementos - VFX Rebranding", kicker: "VFX / Rebranding", ratio: "9:16", thumb: "assets/img/04-luz-dramatica.png", yt: "ItA1bp0yrBU", sub: "Composição visual e efeitos para rebranding", scope: "VFX, Motion & Edição", client: "Atlas Suplementos", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
           { title: "Natal Solidário GPC - 2025 - Motion", kicker: "Motion Graphics", ratio: "9:16", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "uF0wqMbB0PE", sub: "Animação em motion para o Natal Solidário GPC 2025", scope: "Motion Graphics & Edição", client: "Natal Solidário GPC", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
           { title: "Demoreel 2024 MuvStudio", kicker: "Demoreel 2024", ratio: "16:9", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "m0OHFvZ-LsY", sub: "Demoreel 2024 com recortes de edição, motion e pós", scope: "Edição, Motion & Pós-Produção", client: "MUV STUDIO", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "Motion v2 - Camarote Planeta Band - Carnaval 2026", kicker: "Carnaval · Motion", ratio: "16:9", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "ewxnHz8lu14", sub: "Peça Carnaval 2026 v2 · Camarote Planeta Band", scope: "Motion Graphics", client: "Camarote Planeta Band", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "Motion v1 - Camarote Planeta Band - Carnaval 2026", kicker: "Carnaval · Motion", ratio: "16:9", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "Sqd_ibl0_rQ", sub: "Peça Carnaval 2026 v1 · Camarote Planeta Band", scope: "Motion Graphics", client: "Camarote Planeta Band", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
           { title: "MRV Sensia - Plataforma Gamificada - Motion", kicker: "Motion / Gamificação", ratio: "16:9", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "fIimDoYHBHk", sub: "Motion para plataforma gamificada MRV Sensia", scope: "Motion Graphics & Edição", client: "MRV Sensia", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
           { title: "MRV Mais - App e Plataforma Gamificada - Motion", kicker: "Motion / App", ratio: "16:9", thumb: "assets/img/04-luz-dramatica.png", yt: "1JuHFNa5vnA", sub: "Motion para app e plataforma gamificada MRV Mais", scope: "Motion Graphics & Edição", client: "MRV Mais", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
           { title: "MRV Start - Plataforma Gamificada - PROCONPH", kicker: "Motion / Gamificação", ratio: "16:9", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "uiyWzySgDNw", sub: "Motion para plataforma gamificada MRV Start · Proconph", scope: "Motion Graphics & Edição", client: "MRV Start · Proconph", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
-          { title: "Atlas Suplementos - Rebranding New Logo", kicker: "Rebranding", ratio: "9:16", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "JwIF38m6Bk8", sub: "Revelação da nova identidade visual da marca", scope: "Motion & Edição", client: "Atlas Suplementos", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
-          { title: "Atlas Suplementos - BlackFriday 2025", kicker: "Motion / Campanha", ratio: "9:16", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "8JF_cNmP9HQ", sub: "Peça promocional para Black Friday 2025", scope: "Edição & Motion", client: "Atlas Suplementos", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
-          { title: "Atlas Suplementos - Storie Rebranding", kicker: "Motion / Stories", ratio: "9:16", thumb: "assets/img/04-luz-dramatica.png", yt: "SouJNgU1MIE", sub: "Conteúdo vertical para stories do rebranding", scope: "Edição & Motion", client: "Atlas Suplementos", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
           { title: "La Gulla Pizzaria - Motion Led - Fatias", kicker: "Motion LED", ratio: "16:9", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "qBEM4_ic_YA", sub: "Peça em motion para painel de LED Fatias · La Gulla Pizzaria", scope: "Motion Graphics para LED", client: "La Gulla Pizzaria", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
           { title: "La Gulla Pizzaria - Motion Led - Big Olhos", kicker: "Motion LED", ratio: "16:9", thumb: "assets/img/04-luz-dramatica.png", yt: "qEdaus1JanA", sub: "Peça em motion para LED Big Olhos · La Gulla Pizzaria", scope: "Motion Graphics para LED", client: "La Gulla Pizzaria", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
           { title: "La Gulla PIzzaria - Motion Led - Mais Intenso", kicker: "Motion LED", ratio: "16:9", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "-Zq1XzVfBRM", sub: "Peça em motion para LED Mais Intenso · La Gulla Pizzaria", scope: "Motion Graphics para LED", client: "La Gulla Pizzaria", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
@@ -1569,8 +1599,8 @@
           { title: "Corrida de Rua Record (2025)", kicker: "Corrida de Rua", ratio: "16:9", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "nfS97fn9gZA", sub: "Cobertura da Corrida de Rua Record 2025", scope: "Captação & Edição", client: "Corrida de Rua Record 2025", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
           { title: "FBJJMMA 2025 - Imperial JiuJitsu", kicker: "Jiu-Jitsu / Campeonato", ratio: "9:16", thumb: "assets/img/04-luz-dramatica.png", yt: "gULmwWZRQBc", sub: "Cobertura do FBJJMMA 2025 com Imperial JiuJitsu", scope: "Captação & Edição", client: "Imperial JiuJitsu · FBJJMMA", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
           { title: "Corrida TJBA (2025)", kicker: "Corrida de Rua", ratio: "9:16", thumb: "assets/img/04-luz-dramatica.png", yt: "RpNLqkt59nk", sub: "Cobertura vertical da Corrida TJBA 2025", scope: "Captação & Edição", client: "Corrida TJBA 2025", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
-          { title: "Corrida Magic - Teaser", kicker: "Teaser · Corrida", ratio: "16:9", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "9e0OronHLbk", sub: "Teaser horizontal de divulgação da Corrida Magic", scope: "Edição & Ritmo", client: "Corrida Magic", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
-          { title: "Maratona Magic - Teaser", kicker: "Teaser · Maratona", ratio: "9:16", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "bi5qD4jy97s", sub: "Teaser vertical da Maratona Magic", scope: "Edição & Ritmo", client: "Maratona Magic", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Corrida Magic - Teaser", kicker: "Teaser · Corrida", ratio: "16:9", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "9e0OronHLbk", sub: "Teaser de 30s de divulgação da Corrida Magic", scope: "Edição & Ritmo", client: "Corrida Magic", origin: "MUV STUDIO", format: "16:9", niche: "agencias-produtoras/index.html" },
+          { title: "Maratona Magic", kicker: "Corrida de Rua · 1min", ratio: "9:16", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "bi5qD4jy97s", sub: "Vídeo oficial completo (1min) da Maratona Magic", scope: "Captação & Edição", client: "Maratona Magic", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
           { title: "Imperial JiuJitsu - Confra 2025", kicker: "Jiu-Jitsu / Evento", ratio: "9:16", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "Po9SMlW3Lo8", sub: "Confraternização 2025 da Imperial JiuJitsu", scope: "Captação & Edição", client: "Imperial JiuJitsu", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" }
         ]
       },
@@ -1582,6 +1612,10 @@
         linkHref: "https://wa.me/5571996068535?text=Ol%C3%A1%20Neri%2C%20quero%20cotar%20edi%C3%A7%C3%A3o%20de%20Reels%20e%20conte%C3%BAdo%20vertical.",
         items: [
           { title: "Avata 2 - Rafful e Dan", kicker: "Drone / Criadores · Destaque", ratio: "9:16", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "1qA3Qx2HsIs", sub: "Registro com Avata 2 por Rafful e Dan", scope: "Edição & Ritmo", client: "Rafful e Dan", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Atlas Suplementos - VFX Rebranding", kicker: "Reels / Rebranding", ratio: "9:16", thumb: "assets/img/04-luz-dramatica.png", yt: "ItA1bp0yrBU", sub: "Composição visual e efeitos para rebranding da Atlas Suplementos", scope: "VFX, Motion & Edição", client: "Atlas Suplementos", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Atlas Suplementos - Rebranding New Logo", kicker: "Reels / Rebranding", ratio: "9:16", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "JwIF38m6Bk8", sub: "Revelação da nova identidade visual da Atlas Suplementos", scope: "Motion & Edição", client: "Atlas Suplementos", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Atlas Suplementos - BlackFriday 2025", kicker: "Reels / Campanha", ratio: "9:16", thumb: "assets/img/wallpaper7-camadas.jpg", yt: "8JF_cNmP9HQ", sub: "Peça promocional vertical para Black Friday 2025", scope: "Edição & Motion", client: "Atlas Suplementos", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
+          { title: "Atlas Suplementos - Storie Rebranding", kicker: "Stories / Rebranding", ratio: "9:16", thumb: "assets/img/04-luz-dramatica.png", yt: "SouJNgU1MIE", sub: "Conteúdo vertical para stories do rebranding Atlas Suplementos", scope: "Edição & Motion", client: "Atlas Suplementos", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
           { title: "Tour das Ilhas - Barra Grande", kicker: "Viagem / Tour", ratio: "9:16", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "jUZNn0jLRws", sub: "Roteiro visual do Tour das Ilhas em Barra Grande", scope: "Captação & Edição", client: "Tour das Ilhas · Barra Grande", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
           { title: "Grecia Tattoo - Parte 1", kicker: "Tattoo / Parte 1", ratio: "9:16", thumb: "assets/img/wallpaper5-vidro.jpg", yt: "-N53tKNAbFo", sub: "Parte 1 do conteúdo com Grecia Tattoo", scope: "Edição & Ritmo", client: "Grecia Tattoo", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
           { title: "EVO - Reels", kicker: "Reels", ratio: "9:16", thumb: "assets/img/04-luz-dramatica.png", yt: "EkC_EKbaVWI", sub: "Reel vertical para EVO", scope: "Edição & Motion", client: "EVO", origin: "MUV STUDIO", format: "9:16", niche: "agencias-produtoras/index.html" },
@@ -1676,7 +1710,7 @@
       siteHeader.classList.toggle('scrolled', window.scrollY > 30);
     }, { passive: true });
 
-    /* VÍDEOS EM BACKGROUND NOS SLIDES DO HERO (DESKTOP) */
+    /* VÍDEOS EM BACKGROUND NOS SLIDES DO HERO (DESKTOP) — 100% OPACO AO ROLAR */
     const heroVideoConfigs = {
       showreel2025: {
         slideIdx: 0,
@@ -1703,16 +1737,58 @@
 
     let activeSlideIdx = 0;
 
+    function registerHeroIframeHandshake(iframeEl, slideEl) {
+      const sendSubscribe = () => {
+        if (!iframeEl.contentWindow) return;
+        iframeEl.contentWindow.postMessage(JSON.stringify({ event: 'listening' }), '*');
+      };
+      iframeEl.addEventListener('load', () => {
+        sendSubscribe();
+        setTimeout(sendSubscribe, 400);
+        setTimeout(sendSubscribe, 1200);
+      });
+    }
+
+    window.addEventListener('message', (event) => {
+      if (typeof event.data !== 'string') return;
+      let data;
+      try {
+        data = JSON.parse(event.data);
+      } catch (e) {
+        return;
+      }
+      if (!data) return;
+
+      const state = data.event === 'onStateChange' ? data.info : data.info?.playerState;
+      if (typeof state !== 'number') return;
+
+      document.querySelectorAll('.hero-video-wrap iframe').forEach((ifr) => {
+        if (ifr.contentWindow === event.source) {
+          const slide = ifr.closest('.hero-card');
+          if (!slide) return;
+          if (state === 1) {
+            slide.classList.add('is-playing');
+          } else if (state === 0 || state === 2 || state === -1) {
+            slide.classList.remove('is-playing');
+          }
+        }
+      });
+    });
+
     function syncHeroVideosForSlide(currentIdx) {
+      document.querySelectorAll('.hero-card').forEach((card) => card.classList.remove('is-playing'));
       if (window.innerWidth <= 820) return;
 
       Object.entries(heroVideoConfigs).forEach(([key, cfg]) => {
         const wrap = document.querySelector(`[data-hero-video="${key}"]`);
         if (!wrap) return;
+        const slideEl = wrap.closest('.hero-card');
 
         if (cfg.slideIdx === currentIdx) {
           if (!wrap.querySelector('iframe')) {
             wrap.innerHTML = `<iframe id="hero-iframe-${key}" src="${cfg.src}" title="${cfg.title}" allow="autoplay; encrypted-media"></iframe>`;
+            const ifr = wrap.querySelector('iframe');
+            registerHeroIframeHandshake(ifr, slideEl);
           }
           heroMuteState[key] = true;
           updateMuteIcons(key, true);
@@ -1859,12 +1935,22 @@
     let currentFilter = 'all';
     let currentQuery = '';
 
+    const subjectFocusedRails = new Set(['anormale', 'reality-show', 'podcast']);
+
     function cardMarkup(railId, item, idx) {
+      const isShort = item.ratio === '9:16';
+      const isSubjectFocused = subjectFocusedRails.has(railId) && !isShort;
+      const classes = [
+        'card',
+        isShort ? 'is-short-thumb' : '',
+        isSubjectFocused ? 'focus-subject' : ''
+      ].filter(Boolean).join(' ');
+
       return `
-        <article class="card" data-ratio="${item.ratio}" onclick="openProject('${railId}', ${idx})">
+        <article class="${classes}" data-ratio="${item.ratio}" onclick="openProject('${railId}', ${idx})">
           <div class="card-media">
             <div class="card-muv"><img src="assets/img/Muv_Studio_Logo-10.png" alt="MUV"></div>
-            <img class="card-thumb" src="${ytThumb(item.yt)}" alt="${item.title}" loading="lazy" onload="if(this.naturalWidth===120){this.src='https://img.youtube.com/vi/${item.yt}/hqdefault.jpg';}" onerror="this.onerror=null;this.src='${item.thumb}';">
+            <img class="card-thumb" src="${ytThumb(item.yt, item.ratio)}" alt="${item.title}" loading="lazy" onload="if(this.naturalWidth===120){this.src='https://i.ytimg.com/vi/${item.yt}/hqdefault.jpg?v=${THUMB_VERSION}';}" onerror="this.onerror=null;this.src='${item.thumb}';">
             <div class="card-overlay">
               <span class="card-kicker">${item.kicker}</span>
               <h3 class="card-title">${item.title}</h3>
@@ -2081,7 +2167,7 @@
         <article class="rel-card" onclick="openProject('${rec.railId}', ${rec.idx})">
           <div class="rel-thumb">
             <span class="rel-tag">${rec.tag}</span>
-            <img src="${ytThumb(rec.item.yt)}" alt="${rec.item.title}" loading="lazy" onload="if(this.naturalWidth===120){this.src='https://img.youtube.com/vi/${rec.item.yt}/hqdefault.jpg';}" onerror="this.onerror=null;this.src='${rec.item.thumb}';">
+            <img src="${ytThumb(rec.item.yt, rec.item.ratio)}" alt="${rec.item.title}" loading="lazy" onload="if(this.naturalWidth===120){this.src='https://i.ytimg.com/vi/${rec.item.yt}/hqdefault.jpg?v=${THUMB_VERSION}';}" onerror="this.onerror=null;this.src='${rec.item.thumb}';">
           </div>
           <div class="rel-body">
             <strong>${rec.item.title}</strong>
